@@ -1,0 +1,20 @@
+{
+  "BaseModel.42590fc9-8c0e-42b8-b853-bed4e650de75": {
+    "id": "42590fc9-8c0e-42b8-b853-bed4e650de75",
+    "created_at": "2024-06-17T19:36:04.968265",
+    "updated_at": "2024-06-17T22:36:04.968281",
+    "__class__": "BaseModel"
+  },
+  "BaseModel.0027470d-2677-41b4-87d1-f9c6a870cc31": {
+    "id": "0027470d-2677-41b4-87d1-f9c6a870cc31",
+    "created_at": "2024-06-19T18:41:33.339584",
+    "updated_at": "2024-06-19T21:41:33.339594",
+    "__class__": "BaseModel"
+  },
+  "Patient.74118e05-a04e-48e7-b62e-eff0e48ad032": {
+    "id": "74118e05-a04e-48e7-b62e-eff0e48ad032",
+    "created_at": "2024-06-19T18:42:45.029905",
+    "updated_at": "2024-06-19T21:42:45.029935",
+    "__class__": "Patient"
+  }
+}
