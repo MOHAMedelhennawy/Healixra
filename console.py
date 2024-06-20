@@ -10,6 +10,7 @@ import models
 import re
 from models import storage
 from models.patient import Patient
+from models.doctor import Doctor
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
 
@@ -21,7 +22,11 @@ class HBNBCommand(cmd.Cmd):
 
     prompt = "(hbnb) "
     Classes_dict = {
-        "BaseModel": BaseModel, "Patient": Patient}
+        "BaseModel": BaseModel,
+        "Patient": Patient,
+        "Doctor": Doctor
+        }
+
 
     all_objs = storage.all()
     instance_representation = []

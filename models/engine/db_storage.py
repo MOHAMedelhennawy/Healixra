@@ -5,13 +5,14 @@ Contains the class DBStorage
 
 import models
 from models.patient import Patient
+from models.doctor import Doctor
 from models.base_model import BaseModel, Base
 from os import getenv
 import sqlalchemy
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 
-classes = {"Patient": Patient, "BaseModel": BaseModel}
+classes = {"Patient": Patient, 'Doctor': Doctor}
 
 
 

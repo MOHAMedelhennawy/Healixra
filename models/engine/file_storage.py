@@ -4,10 +4,11 @@ Contains the FileStorage class
 """
 
 import json
-from models.base_model import BaseModel
+from models.doctor import Doctor
 from models.patient import Patient
+from models.base_model import BaseModel
 
-classes = {"Patient": Patient, "BaseModel": BaseModel}
+classes = {"Patient": Patient, "BaseModel": BaseModel, 'Doctor': Doctor}
 
 
 class FileStorage:

@@ -1,14 +1,18 @@
 #!/usr/bin/python3
 """Patient Class defenition"""
 
-from models.base_model import BaseModel, Base 
+from models.base_model import BaseModel, Base
 from sqlalchemy import Column, String, ForeignKey, Text, BLOB, Table
 from sqlalchemy.orm import relationship
+from models.doctor import Doctor
+
 doctor_patient = Table(
-    'doctor_patient', Base.metadata,
+    'doctor_patient',
+    Base.metadata,
     Column('patient_id', String(60), ForeignKey('patients.id'), primary_key=True, nullable=False),
     Column('doctor_id', String(60), ForeignKey('doctors.id'), primary_key=True, nullable=False)
-            )
+        )
+
 
 class Patient(BaseModel, Base):
     __tablename__ = 'patients'
@@ -21,4 +25,4 @@ class Patient(BaseModel, Base):
     description = Column(Text(500))
     images = Column(BLOB)
 
-    # doctors = relationship('Doctor', secondary='doctor_patient', back_populates='patients')
+    doctors = relationship('Doctor', secondary='doctor_patient', back_populates='patients', cascade='all, delete')
