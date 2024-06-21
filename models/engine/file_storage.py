@@ -6,9 +6,14 @@ Contains the FileStorage class
 import json
 from models.doctor import Doctor
 from models.patient import Patient
+from models.location import Location
 from models.base_model import BaseModel
+from models.specialization import Specialization
+from models.location import Location
 
-classes = {"Patient": Patient, "BaseModel": BaseModel, 'Doctor': Doctor}
+classes = {"Patient": Patient, "BaseModel": BaseModel,
+           'Doctor': Doctor, 'Location': Location,
+           'Specialization': Specialization}
 
 
 class FileStorage:

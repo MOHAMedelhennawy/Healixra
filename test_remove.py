@@ -7,6 +7,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from models.patient import Patient
 from models.doctor import Doctor
+from models.specialization import Specialization
 
 HBNB_MYSQL_USER = 'Name'
 HBNB_MYSQL_PWD = 'Password'
@@ -25,36 +26,51 @@ Session = sessionmaker(bind=engine)
 # Create a Session
 session = Session()
 
+print("Before deleting:\n")
+
 i = 1
 # List all patient
 patients = session.query(Patient).all()
 for patient in patients:
-    print("================= Row {} =================".format(i))
+    print("================= Patient {} =================".format(i))
     print(patient)
     print
     i += 1
 
 # List doctor with id
-# Don't forget to change doctor id
-doctor = session.query(Doctor).filter_by(id='2cb68ee6-a4c6-448b-aa2d-703a6bd95e56').first()
-print("================= doctor =================")
-print("doctor with id {}:\n{}".format(doctor.id, doctor))
+i = 1
+doctors = session.query(Doctor).all()
+for doctor in doctors:
+    print("================= Doctor {} =================".format(i))
+    print(doctor)
+
+
+print("Before deleting:\n\
+      Number of all patients is: {}\n\
+      And Number of all doctors: {}".format(len(patients), len(doctors)))
 
 
 session.delete(doctor)
 session.commit()
 
+print("Afte deleting:\n")
+
 i = 1
 # List all patient
 patients = session.query(Patient).all()
 for patient in patients:
-    print("================= Row {} =================".format(i))
+    print("================= Patient {} =================".format(i))
     print(patient)
     print
     i += 1
 
-# List doctor with id 
-# Don't forget to change doctor id
-doctor = session.query(Doctor).filter_by(id='2cb68ee6-a4c6-448b-aa2d-703a6bd95e56').first()
-print("================= doctor =================")
-print("doctor with id {}:\n{}".format(doctor.id, doctor))
+# List doctor with id
+i = 1
+doctors = session.query(Doctor).all()
+for doctor in doctors:
+    print("================= Doctor {} =================".format(i))
+    print(doctor)
+
+print("After deleting:\n\
+      Number of all patients is: {}\n\
+      And Number of all doctors: {}".format(len(patients), len(doctors)))

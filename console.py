@@ -10,8 +10,10 @@ import models
 import re
 from models import storage
 from models.patient import Patient
+from models.location import Location
 from models.doctor import Doctor
 from models.base_model import BaseModel
+from models.specialization import Specialization
 from models.engine.file_storage import FileStorage
 
 
@@ -24,7 +26,9 @@ class HBNBCommand(cmd.Cmd):
     Classes_dict = {
         "BaseModel": BaseModel,
         "Patient": Patient,
-        "Doctor": Doctor
+        "Doctor": Doctor,
+        "Specialization": Specialization,
+        "Location": Location,
         }
 
 

@@ -29,15 +29,15 @@ nav{
     padding: 9px 19px;
     border-radius: 32px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-
 }
 
 nav .logo{
     color: black;
-    font-size: 32px;
+    font-size: 28px;
     text-decoration: none;
     text-transform: capitalize;
-    font-weight: 600;
+    padding-left: 15px;
+    font-weight: 599;
 }
 
 nav ul a{

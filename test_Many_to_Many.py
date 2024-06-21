@@ -8,10 +8,14 @@ HBNB_MYSQL_USER=Name HBNB_MYSQL_PWD=Password HBNB_MYSQL_HOST=localhost HBNB_MYSQ
 
 
 
+from models.specialization import Specialization
 from models.base_model import BaseModel
 from models.patient import Patient
 from models.doctor import Doctor
 from models import storage
+
+
+specialization_ = Specialization(specialization_name='Internal Medicine')
 
 patient1 = Patient(
     first_name='Mohammed', last_name='Ahmed', email='Mohammed@ex.com', gender='male',
@@ -31,7 +35,7 @@ patient1.save()
 patient2.save()
 patient3.save()
 
-doctor1 = Doctor(first_name='Hazem', last_name='elmashad')
+doctor1 = Doctor(first_name='Hazem', last_name='elmashad', specialization=specialization_)
 
 # Save doctor before appending patients
 doctor1.save()
@@ -40,6 +44,40 @@ doctor1.save()
 doctor1.patients.append(patient3)
 doctor1.patients.append(patient2)
 doctor1.patients.append(patient1)
+
+# =======================================================================
+
+specialization_ = Specialization(specialization_name='External Medicine')
+
+patient1 = Patient(
+    first_name='Ibrahim', last_name='elkelany', email='elkelany@ex.com', gender='male',
+    phone='010165', password='test0234'
+)
+patient2 = Patient(
+    first_name='Michel', last_name='Nour', email='michel@ex.com', gender='male',
+    phone='010325', password='2332p'
+)
+patient3 = Patient(
+    first_name='Hager', last_name='Khaled', email='Hager@ex.com', gender='female',
+    phone='01034165', password='213-test'
+)
+
+# Save patients
+patient1.save()
+patient2.save()
+patient3.save()
+
+doctor1 = Doctor(first_name='Mnsour', last_name='Fekry', specialization=specialization_)
+
+# Save doctor before appending patients
+doctor1.save()
+
+# Append patients to doctor
+doctor1.patients.append(patient3)
+doctor1.patients.append(patient2)
+doctor1.patients.append(patient1)
+
+
 
 # Commit the changes to the database
 storage.save()

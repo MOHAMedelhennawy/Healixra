@@ -1,13 +1,50 @@
 {
-  "Patient.591b99d6-5d2d-479b-8fb4-ae71bcdd8348": {
-    "first_name": "Mohammed",
-    "last_name": "elhennawy",
-    "email": "elhennawy@ex.com",
-    "gender": "male",
-    "phone": "010165",
-    "password": "test0234",
-    "created_at": "2024-06-20T06:27:01.027152",
-    "updated_at": "2024-06-20T09:27:01.027266",
-    "id": "591b99d6-5d2d-479b-8fb4-ae71bcdd8348",
-    "doctors": [
-      
+  "Location.e80e70d1-4861-4be4-b19d-39ba0a9f2ea8": {
+    "location_name": "Tanta",
+    "created_at": "2024-06-21T03:48:06.683081",
+    "updated_at": "2024-06-21T06:48:06.683119",
+    "id": "e80e70d1-4861-4be4-b19d-39ba0a9f2ea8",
+    "__class__": "Location"
+  },
+  "Specialization.31660016-d205-4a38-83be-b6327524a346": {
+    "specialization_name": "Internal Medicine",
+    "created_at": "2024-06-21T03:48:06.683409",
+    "updated_at": "2024-06-21T06:48:06.683466",
+    "id": "31660016-d205-4a38-83be-b6327524a346",
+    "__class__": "Specialization"
+  },
+  "Doctor.959f03a6-0692-4a60-b75d-4e2800c8ecf7": {
+    "first_name": "Mnsour",
+    "last_name": "Fekry",
+    "specialization_id": "31660016-d205-4a38-83be-b6327524a346",
+    "location_id": "e80e70d1-4861-4be4-b19d-39ba0a9f2ea8",
+    "created_at": "2024-06-21T03:48:06.684068",
+    "updated_at": "2024-06-21T06:48:06.684101",
+    "id": "959f03a6-0692-4a60-b75d-4e2800c8ecf7",
+    "__class__": "Doctor"
+  },
+  "Location.5fce356b-1bb0-4391-97e9-b9e2d6ffd052": {
+    "location_name": "Tanta",
+    "created_at": "2024-06-21T03:52:16.624144",
+    "updated_at": "2024-06-21T06:52:16.624176",
+    "id": "5fce356b-1bb0-4391-97e9-b9e2d6ffd052",
+    "__class__": "Location"
+  },
+  "Specialization.a16b7899-c533-489f-ac27-1736fd7b2522": {
+    "specialization_name": "Internal Medicine",
+    "created_at": "2024-06-21T03:52:16.624510",
+    "updated_at": "2024-06-21T06:52:16.624568",
+    "id": "a16b7899-c533-489f-ac27-1736fd7b2522",
+    "__class__": "Specialization"
+  },
+  "Doctor.5f74dda3-af86-48bb-af1c-6af0cf80027e": {
+    "first_name": "Mnsour",
+    "last_name": "Fekry",
+    "specialization_id": "a16b7899-c533-489f-ac27-1736fd7b2522",
+    "location_id": "5fce356b-1bb0-4391-97e9-b9e2d6ffd052",
+    "created_at": "2024-06-21T03:52:16.625090",
+    "updated_at": "2024-06-21T06:52:16.625136",
+    "id": "5f74dda3-af86-48bb-af1c-6af0cf80027e",
+    "__class__": "Doctor"
+  }
+}
