@@ -25,4 +25,5 @@ class Patient(BaseModel, Base):
     description = Column(Text(500))
     images = Column(BLOB)
 
-    doctors = relationship('Doctor', secondary='doctor_patient', back_populates='patients', cascade='all, delete')
+    reviews = relationship('Review', backref='Patient', cascade='all, delete')
+    doctors = relationship('Doctor', secondary='doctor_patient', back_populates='patients')

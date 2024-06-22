@@ -1,12 +1,13 @@
-#!/usr/bin/python3
+#!/usr/bin/pyhon3
 """
-Test database
-Tables: Location, Doctor, Patient, Specialization.
-"""
+Test Review
 
+Command:
+"""
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from models.patient import Patient
+from models.review import Review
 from models.doctor import Doctor
 from models.location import Location
 from models.specialization import Specialization
@@ -29,29 +30,27 @@ Session = sessionmaker(bind=engine)
 # Create a Session
 session = Session()
 
-i = 1
-# List all doctors
-for doctor in session.query(Doctor).all():
-    print("=============== Doctor {} ===============".format(i))
-    print(doctor)
-    i += 1
 
+# List doctor to test
 doctor = session.query(Doctor).first()
 
 
+# Make fake reviews
+for patient in doctor.patients:
+    review_text = input()
+    review = Review(doctor_id=doctor.id, patient_id=patient.id, review_text=review_text)
+    review.save()
+storage.save()
+
+
+doctor_name = doctor.first_name + ' ' + doctor.last_name
 i = 1
-patients = doctor.patients
-# List all patients related to doctor
-for patient in patients:
-    print("=============== patient {} ===============".format(i))
-    print(patient)
+
+
+# Try to print all reviews related to doctor
+print(f"All {doctor_name} Reviews")
+for review in doctor.reviews:
+    patient = session.query(Patient).filter_by(id=review.patient_id).first()
+    patient_name = patient.first_name + ' ' + patient.last_name
+    print(f'{i}\t{patient_name}: {review.review_text}')
     i += 1
-
-print('+' * 100)
-print('+' * 100)
-
-print(doctor.specialization.specialization_name)
-print(doctor.specialization_id)
-print(doctor.specialization)
-
-

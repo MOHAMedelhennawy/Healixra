@@ -13,6 +13,7 @@ from models.patient import Patient
 from models.location import Location
 from models.doctor import Doctor
 from models.base_model import BaseModel
+from models.review import Review
 from models.specialization import Specialization
 from models.engine.file_storage import FileStorage
 
@@ -29,6 +30,7 @@ class HBNBCommand(cmd.Cmd):
         "Doctor": Doctor,
         "Specialization": Specialization,
         "Location": Location,
+        "Review": Review,
         }
 
 

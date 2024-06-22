@@ -9,6 +9,7 @@ from models.specialization import Specialization
 from models.doctor import Doctor
 from models.location import Location
 from models.base_model import BaseModel, Base
+from models.review import Review
 from os import getenv
 import sqlalchemy
 from sqlalchemy import create_engine
@@ -16,7 +17,8 @@ from sqlalchemy.orm import scoped_session, sessionmaker
 
 classes = {
     "Patient": Patient, 'Doctor': Doctor,
-    'Specialization': Specialization, 'Location': Location}
+    'Specialization': Specialization, 'Location': Location,
+    'Review': Review}
 
 
 

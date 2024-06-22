@@ -13,6 +13,6 @@ class Doctor(BaseModel, Base):
     last_name = Column(String(128), nullable=False)
     schedule = Column(Text)
     image = Column(BLOB)
-    # reviews = relationship('Review', backref='doctor', cascade='all, delete')
+    reviews = relationship('Review', backref='doctor', cascade='all, delete')
     specialization = relationship('Specialization', back_populates='doctors')
-    patients = relationship('Patient', secondary='doctor_patient', back_populates='doctors', cascade='all, delete')
+    patients = relationship('Patient', secondary='doctor_patient', back_populates='doctors')
