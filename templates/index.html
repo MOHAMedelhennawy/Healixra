@@ -5,17 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My project</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='main.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='registerForm.css')}}">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 </head>
 <body>
     <div class="container">
         <nav>
-            <a href="#" class="logo">Healixra</a>
+            <a href="{{ url_for('homePage') }}" class="logo">Healixra</a>
             <ul>
                 <li><a href="{{ url_for('homePage') }}">Home</a></li>
                 <li><a href="{{ url_for('aboutPage') }}">About</a></li>
                 <li><a href="{{ url_for('doctorsPage') }}">Doctors</a></li>
-                <li><a href="{{ url_for('pagesPage') }}">Pages</a></li>
-                <li><a href="{{ url_for('contentPage') }}">Login</a></li>
+                <li><a href="{{ url_for('register') }}">Sign Up</a></li>
+                <li><a href="{{ url_for('login') }}">Login</a></li>
             </ul>
         </nav>
         {% block content %}
