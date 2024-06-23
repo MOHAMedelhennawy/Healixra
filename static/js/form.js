@@ -1,18 +1,35 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const showHidePw = document.querySelectorAll('.showHidePw');
-    const pwFields = document.querySelectorAll('.password');
+const container = document.querySelector(".container"),
+      pwShowHide = document.querySelectorAll(".showHidePw"),
+      pwFields = document.querySelectorAll(".password"),
+      signUp = document.querySelector(".signup-link"),
+      login = document.querySelector(".login-link");
 
-    showHidePw.forEach(eyeIcon => {
-        eyeIcon.addEventListener("click", () => {
-            pwFields.forEach(pwField => {
-                if (pwField.type === "password") {
-                    pwField.type = "text";
-                    eyeIcon.style.color = "#4070f4"
-                } else {
-                    pwField.type = "password";
-                    eyeIcon.style.color = "#999"
-                }
-            });
-        });
-    });
+// js code to show/hide password and change icon
+pwShowHide.forEach(eyeIcon =>{
+    eyeIcon.addEventListener("click", ()=>{
+        pwFields.forEach(pwField =>{
+            if(pwField.type ==="password"){
+                pwField.type = "text";
+
+                pwShowHide.forEach(icon =>{
+                    icon.style.color = '#4070f4'
+                })
+            }else{
+                pwField.type = "password";
+
+                pwShowHide.forEach(icon =>{
+                    icon.style.color = '#999'
+                })
+            }
+        }) 
+    })
+})
+
+// js code to appear signup and login form
+signUp.addEventListener("click", ( )=>{
+    container.classList.add("active");
+});
+
+login.addEventListener("click", ( )=>{
+    container.classList.remove("active");
 });
