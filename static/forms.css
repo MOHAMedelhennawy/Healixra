@@ -30,7 +30,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: aqua;
+    /* background-color: aqua; */
 }
 
 .container{
@@ -175,7 +175,6 @@ body{
     text-align: center;
 }
 
-
 .form .name {
     display: flex;
     justify-content: space-between;
@@ -186,3 +185,14 @@ body{
 .form .name {
     color: #265df2;
 }
+
+
+
+/* .input_field .invalid_input {
+    border-bottom-color: #f11313;
+}
+
+/* If you want the border color to change only when the field is focused, use this */
+/* .input_field .invalid_input:focus {
+    border-bottom-color: #f11313;
+} */

@@ -5,35 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='forms.css') }}">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-    <title>Document</title>
+    <title>{{ title }}</title>
 </head>
 <body>
     <div class="container" style="max-width: 600px;">
         <div class="forms">
             <div class="form login">
-                <span class="title">Registeration</span>
-                <form action="#">
+                <span class="title">Registration</span>
+                <form action="{{ url_for('register') }}" method="POST">
+                    {{ form.hidden_tag() }}
                     <div class="name">
                         <div class="input_field">
-                            <input type="text" placeholder="first name">
+                            {{ form.first_name(class_='input') }}
                             <i class="uil uil-user icon"></i>
                         </div>
                         <div class="input_field">
-                            <input type="text" placeholder="last name">
+                            {{ form.last_name(class_='input') }}
                             <i class="uil uil-user icon"></i>
                         </div>
                     </div>
                     <div class="input_field">
-                        <input type="text" placeholder="email">
+                        {{ form.email(class_='input') }}
                         <i class="uil uil-envelope icon"></i>
                     </div>
                     <div class="input_field">
-                        <input type="password" class="password" placeholder="password">
+                        {{ form.password(class_='input password') }}
                         <i class="uil uil-lock icon"></i>
                         <i class="uil uil-eye-slash showHidePw"></i>
                     </div>
                     <div class="input_field">
-                        <input type="password" class="password" placeholder="Confirm your password">
+                        {{ form.confirm_password(class_='input password') }}
                         <i class="uil uil-lock icon"></i>
                         <i class="uil uil-eye-slash showHidePw"></i>
                     </div>
@@ -42,24 +43,20 @@
                             <input type="checkbox" id="logCheck">
                             <label for="logCheck" class="text">Remember Me</label>
                         </div>
-
                         <a href="#" class="text">Forgot password?</a>
                     </div>
-
-                <div class="input_field button">
-                    <input type="button" value="Login Now" required>
+                    <div class="input_field button">
+                        {{ form.submit(class_='button') }}
+                    </div>
+                </form>
+                <div class="login-signup">
+                    <span class="text">Already have an account?
+                        <a href="{{ url_for('login') }}" class="text signup-text">Sign In</a>
+                    </span>
                 </div>
-            </form>
-
-            <div class="login-signup">
-                <span class="text">Not a member?
-                    <a href="#" class="text signup-text">Sign Up</a>
-                </span>
-            </div>
             </div>
         </div>
     </div>
-
-
-    <script src="{{ url_for('static', filename='js/form.js') }}"></script></body>
+    <script src="{{ url_for('static', filename='js/form.js') }}"></script>
+</body>
 </html>
