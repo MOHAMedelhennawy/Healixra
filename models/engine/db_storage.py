@@ -8,12 +8,13 @@ from models.patient import Patient
 from models.specialization import Specialization
 from models.doctor import Doctor
 from models.location import Location
-from models.base_model import BaseModel, Base
+from models.base_model import BaseModel
 from models.review import Review
 from os import getenv
 import sqlalchemy
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
+
 
 classes = {
     "Patient": Patient, 'Doctor': Doctor,
@@ -39,8 +40,6 @@ class DBStorage:
                                              HBNB_MYSQL_PWD,
                                              HBNB_MYSQL_HOST,
                                              HBNB_MYSQL_DB))
-        if HBNB_ENV == "test":
-            Base.metadata.drop_all(self.__engine)
 
     def all(self, cls=None):
         """query on the current database session"""
@@ -67,10 +66,11 @@ class DBStorage:
             self.__session.delete(obj)
 
     def reload(self):
+        from routes import db
         """reloads data from the database"""
-        Base.metadata.create_all(self.__engine)
-        sess_factory = sessionmaker(bind=self.__engine, expire_on_commit=False)
-        Session = scoped_session(sess_factory)
+        db.metadata.create_all(self.__engine)
+        sess_factory = db.sessionmaker(bind=self.__engine, expire_on_commit=False)
+        Session = db.scoped_session(sess_factory)
         self.__session = Session
 
     def close(self):

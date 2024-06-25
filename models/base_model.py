@@ -9,18 +9,18 @@ import models
 from sqlalchemy.orm import declarative_base
 from sqlalchemy import Column, String, DateTime
 import os
+from routes import db
 
-Base = declarative_base()
-
+# Base = declarative_base()
 
 class BaseModel:
     '''
     BaseModel that defines all common attributes/methods for other classes
     '''
 
-    id = Column(String(60), primary_key=True, nullable=False)
-    created_at = Column(DateTime(), nullable=False, default=datetime.utcnow())
-    updated_at = Column(DateTime(), nullable=False, default=datetime.utcnow())
+    id = db.Column(db.String(60), primary_key=True, nullable=False)
+    created_at = db.Column(db.DateTime(), nullable=False, default=datetime.utcnow())
+    updated_at = db.Column(db.DateTime(), nullable=False, default=datetime.utcnow())
 
 
     def __init__(self, *args, **kwargs):

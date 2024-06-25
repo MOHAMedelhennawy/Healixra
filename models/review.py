@@ -1,13 +1,13 @@
 #!/usr/bin/python3
 """Specialization Class defenition"""
 
-from models.base_model import BaseModel, Base 
+from models.base_model import BaseModel 
 from sqlalchemy import Column, String, Integer, Text, ForeignKey
+from routes import db
 
-
-class Review(BaseModel, Base):
+class Review(BaseModel, db.Model):
     __tablename__ = 'reviews'
-    patient_id = Column(String(60), ForeignKey('patients.id'), nullable=False)
-    doctor_id = Column(String(60), ForeignKey('doctors.id'), nullable=False)
-    review_text = Column(Text)
-    rating = Column(Integer)
+    patient_id = db.Column(db.String(60), db.ForeignKey('patients.id'), nullable=False)
+    doctor_id = db.Column(db.String(60), db.ForeignKey('doctors.id'), nullable=False)
+    review_text = db.Column(db.Text)
+    rating = db.Column(db.Integer)

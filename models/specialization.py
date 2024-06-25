@@ -1,12 +1,12 @@
 #!/usr/bin/python3
 """Specialization Class defenition"""
 
-from models.base_model import BaseModel, Base 
+from models.base_model import BaseModel 
 from sqlalchemy import Column, String, DateTime, Text
 from sqlalchemy.orm import relationship
+from routes import db
 
-
-class Specialization(BaseModel, Base):
+class Specialization(BaseModel, db.Model):
     __tablename__ = 'specializations'
-    specialization_name = Column(String(128), nullable=False, unique=True)
-    doctors = relationship('Doctor', back_populates='specialization', cascade='all, delete')
+    specialization_name = db.Column(String(128), nullable=False, unique=True)
+    doctors = db.relationship('Doctor', back_populates='specialization', cascade='all, delete')

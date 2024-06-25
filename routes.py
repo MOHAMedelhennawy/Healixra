@@ -1,13 +1,19 @@
 from flask import Flask, render_template, flash, redirect, url_for
-from models.registration import Registration
-from models.login import Login
-
+from flask_sqlalchemy import SQLAlchemy
+import os
 
 app = Flask(__name__)
 
-
 app.config['SECRET_KEY'] = '4d297f88daf6623e4fe0df5f62d1e152c2076978af7ae82c4f77006340f256f1'
 
+# Use environment variables to configure your MySQL connection
+HBNB_MYSQL_USER = os.getenv('HBNB_MYSQL_USER', 'Name')
+HBNB_MYSQL_PWD = os.getenv('HBNB_MYSQL_PWD', 'Password')
+HBNB_MYSQL_HOST = os.getenv('HBNB_MYSQL_HOST', 'localhost')
+HBNB_MYSQL_DB = os.getenv('HBNB_MYSQL_DB', 'Healixra')
+
+app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+pymysql://{HBNB_MYSQL_USER}:{HBNB_MYSQL_PWD}@{HBNB_MYSQL_HOST}/{HBNB_MYSQL_DB}'
+db = SQLAlchemy(app)
 
 
 @app.route("/")
@@ -34,6 +40,7 @@ def contentPage():
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
+    from models.registration import Registration
     form = Registration()
     if form.validate_on_submit():
         name = form.first_name.data + ' ' + form.last_name.data
@@ -44,6 +51,7 @@ def register():
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
+    from models.login import Login
     form = Login()
     if form.validate_on_submit():
         if form.email.data == "elhennawy@ex.com" and form.password.data == "PASS!!!word123":
