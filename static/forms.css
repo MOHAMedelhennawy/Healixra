@@ -1,67 +1,40 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+/* Add these styles to main.css */
 
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
-
-.mail_icon{
-    background: url('/static/icons/mail.png') no-repeat center;
-    background-size: 20px;
-    height: 20px;
-    width: 20px;
-    display: inline-block;
-    vertical-align: middle;
-}
-
-.password_icon{
-    background: url('/static/icons/Password.png') no-repeat center;
-    background-size: 20px;
-    height: 20px;
-    width: 20px;
-    display: inline-block;
-    vertical-align: middle;
-}
-
-body{
-    height: 100vh;
+.form-container {
     display: flex;
-    align-items: center;
     justify-content: center;
-    /* background-color: aqua; */
+    align-items: center;
+    height: calc(100vh - 100px); /* Adjust the height to fit well with the nav height */
+    /* background-color: rgb(136, 0, 255); */
 }
 
-.container{
-    position: relative;
-    max-width: 420px;
-    width: 100%;
+.form{
     background-color: rgb(255, 255, 255);
+    width: 50%;
+    max-width: 430;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-    box-shadow: 0 5px 10px rgb(0, 0, 0, 0.1);
 }
 
-.container .login{
+.form-container .form{
     padding: 30px;
 }
 
-.container .login .title {
+.form-container .form .title{
+    position: relative;
     font-size: 27px;
     font-weight: 600;
-    position: relative;
 }
 
-.login .title::before {
+.form .title::before{
     content: '';
     position: absolute;
     left: 0;
-    right: 0;
     bottom: 0;
     height: 3px;
     width: 30px;
     background-color: #4070f4;
-    border-radius: 25px;
+    border-radius: 26px;
 }
 
 .login .input_field{
@@ -185,14 +158,3 @@ body{
 .form .name {
     color: #265df2;
 }
-
-
-
-/* .input_field .invalid_input {
-    border-bottom-color: #f11313;
-}
-
-/* If you want the border color to change only when the field is focused, use this */
-/* .input_field .invalid_input:focus {
-    border-bottom-color: #f11313;
-} */

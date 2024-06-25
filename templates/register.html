@@ -1,62 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='forms.css') }}">
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-    <title>{{ title }}</title>
-</head>
-<body>
-    <div class="container" style="max-width: 600px;">
-        <div class="forms">
-            <div class="form login">
-                <span class="title">Registration</span>
-                <form action="{{ url_for('register') }}" method="POST">
-                    {{ form.hidden_tag() }}
-                    <div class="name">
-                        <div class="input_field">
-                            {{ form.first_name(class_='input') }}
-                            <i class="uil uil-user icon"></i>
-                        </div>
-                        <div class="input_field">
-                            {{ form.last_name(class_='input') }}
-                            <i class="uil uil-user icon"></i>
-                        </div>
-                    </div>
-                    <div class="input_field">
-                        {{ form.email(class_='input') }}
-                        <i class="uil uil-envelope icon"></i>
-                    </div>
-                    <div class="input_field">
-                        {{ form.password(class_='input password') }}
-                        <i class="uil uil-lock icon"></i>
-                        <i class="uil uil-eye-slash showHidePw"></i>
-                    </div>
-                    <div class="input_field">
-                        {{ form.confirm_password(class_='input password') }}
-                        <i class="uil uil-lock icon"></i>
-                        <i class="uil uil-eye-slash showHidePw"></i>
-                    </div>
-                    <div class="checkbox-text">
-                        <div class="checkbox-content">
-                            <input type="checkbox" id="logCheck">
-                            <label for="logCheck" class="text">Remember Me</label>
-                        </div>
-                        <a href="#" class="text">Forgot password?</a>
-                    </div>
-                    <div class="input_field button">
-                        {{ form.submit(class_='button') }}
-                    </div>
-                </form>
-                <div class="login-signup">
-                    <span class="text">Already have an account?
-                        <a href="{{ url_for('login') }}" class="text signup-text">Sign In</a>
-                    </span>
+{% extends "index.html" %}
+{% block content %}
+<div class="form-container">
+    <div class="form login">
+        <span class="title">Registration</span>
+        <form action="{{ url_for('register') }}" method="POST">
+            {{ form.hidden_tag() }}
+            <div class="name">
+                <div class="input_field">
+                    {{ form.first_name(class_='input') }}
+                    <i class="uil uil-user icon"></i>
+                </div>
+                <div class="input_field">
+                    {{ form.last_name(class_='input') }}
+                    <i class="uil uil-user icon"></i>
                 </div>
             </div>
+            <div class="input_field">
+                {{ form.email(class_='input') }}
+                <i class="uil uil-envelope icon"></i>
+            </div>
+            <div class="input_field">
+                {{ form.password(class_='input password') }}
+                <i class="uil uil-lock icon"></i>
+                <i class="uil uil-eye-slash showHidePw"></i>
+            </div>
+            <div class="input_field">
+                {{ form.confirm_password(class_='input password') }}
+                <i class="uil uil-lock icon"></i>
+                <i class="uil uil-eye-slash showHidePw"></i>
+            </div>
+            <div class="checkbox-text">
+                <div class="checkbox-content">
+                    <input type="checkbox" id="logCheck">
+                    <label for="logCheck" class="text">Remember Me</label>
+                </div>
+                <a href="#" class="text">Forgot password?</a>
+            </div>
+            <div class="input_field button">
+                {{ form.submit(class_='button') }}
+            </div>
+            <div class="login-signup">
+                <span class="text">Already have an account?
+                    <a href="{{ url_for('login') }}" class="text signup-text">Sign In</a>
+                </span>
         </div>
+        </form>
     </div>
-    <script src="{{ url_for('static', filename='js/form.js') }}"></script>
-</body>
-</html>
+</div>
+<script src="{{ url_for('static', filename='js/form.js') }}"></script>
+{% endblock content %}

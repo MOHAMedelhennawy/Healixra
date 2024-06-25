@@ -1,15 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='forms.css') }}">
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-    <title>Document</title>
-</head>
-<body>
-    <div class="container">
-        <div class="forms">
+{% extends "index.html" %}
+{% block content %}
+    <div class="form-container">
             <div class="form login">
                 <span class="title">Login</span>
                 <form action="{{ url_for('login') }}" method="POST">
@@ -46,8 +37,6 @@
                     </span>
                 </div>
             </div>
-        </div>
     </div>
     <script src="{{ url_for('static', filename='js/form.js') }}"></script>
-</body>
-</html>
+    {% endblock content %}
