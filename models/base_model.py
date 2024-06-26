@@ -4,14 +4,16 @@ module that contain BaseModel
 '''
 
 from uuid import uuid4
+from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import models
 from sqlalchemy.orm import declarative_base
 from sqlalchemy import Column, String, DateTime
 import os
-from routes import db
-
+# from routes import db
+from routes import  app
 # Base = declarative_base()
+db = SQLAlchemy(app)
 
 class BaseModel:
     '''

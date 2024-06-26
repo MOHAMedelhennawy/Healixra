@@ -101,5 +101,25 @@
     "updated_at": "2024-06-22T01:59:07.209900",
     "id": "4dfbe9a4-a4b3-405e-9a7a-b2fe4bf00513",
     "__class__": "Review"
+  },
+  "Patient.57e903b2-e566-4357-85d4-171923a236a1": {
+    "first_name": "Mohammed",
+    "last_name": "elhennawy",
+    "email": "ElhennawyEmail@test.com",
+    "password": "$2b$12$U7NSjPDNuoYnoEwUGEG3CevQZuqZB.Uz3Kw7eL6YjfZksw0sPud26",
+    "created_at": "2024-06-26T04:09:28.836475",
+    "updated_at": "2024-06-26T07:09:28.836543",
+    "id": "57e903b2-e566-4357-85d4-171923a236a1",
+    "__class__": "Patient"
+  },
+  "Patient.77313d26-8d55-44b6-a37c-89a7a9dde5a3": {
+    "first_name": "Mohammed",
+    "last_name": "dsfafda",
+    "email": "elhennawy@ex.com",
+    "password": "$2b$12$sNCNmWSlQoX7wOC/5fvK3uw1xKxogosBs3auEl/5lWfkg7tavIji2",
+    "created_at": "2024-06-26T04:10:14.143231",
+    "updated_at": "2024-06-26T07:10:14.143283",
+    "id": "77313d26-8d55-44b6-a37c-89a7a9dde5a3",
+    "__class__": "Patient"
   }
 }

@@ -5,7 +5,7 @@ from models.base_model import BaseModel
 from sqlalchemy import Column, String, ForeignKey, Text, BLOB, Table
 from sqlalchemy.orm import relationship
 from models.doctor import Doctor
-from routes import db
+from models.base_model import db
 
 
 doctor_patient = db.Table(
@@ -22,8 +22,8 @@ class Patient(BaseModel, db.Model):
     last_name = db.Column(db.String(128), nullable=False)
     email = db.Column(db.String(128), nullable=False, unique=True)
     password = db.Column(db.String(128), nullable=False)
-    gender = db.Column(db.String(128), nullable=False)
-    phone = db.Column(db.String(15), nullable=False)
+    gender = db.Column(db.String(128))
+    phone = db.Column(db.String(15))
     images = db.Column(db.BLOB)
 
     reviews = db.relationship('Review', backref='Patient', cascade='all, delete')

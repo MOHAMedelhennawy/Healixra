@@ -15,7 +15,6 @@ import sqlalchemy
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 
-
 classes = {
     "Patient": Patient, 'Doctor': Doctor,
     'Specialization': Specialization, 'Location': Location,
@@ -66,7 +65,7 @@ class DBStorage:
             self.__session.delete(obj)
 
     def reload(self):
-        from routes import db
+        from models.base_model import db
         """reloads data from the database"""
         db.metadata.create_all(self.__engine)
         sess_factory = db.sessionmaker(bind=self.__engine, expire_on_commit=False)

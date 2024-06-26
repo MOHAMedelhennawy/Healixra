@@ -70,19 +70,19 @@ patient1 = Patient(
 patient1.save()
 
 patient2 = Patient(
-    first_name='Michel', last_name='Nour', email='michel@ex.com', gender='male',
+    first_name='Michel', last_name='Nour', email='micfhel@ex.com', gender='male',
     phone='010325', password='2332p'
 )
 patient2.save()
 
 patient3 = Patient(
-    first_name='Hager', last_name='Khaled', email='Hager@ex.com', gender='female',
+    first_name='Hager', last_name='Khaled', email='Hagerd@ex.com', gender='female',
     phone='01034165', password='213-test'
 )
 patient3.save()
 
 patient4 = Patient(
-    first_name='Mohammed', last_name='Ahmed', email='Mohammed@ex.com', gender='male',
+    first_name='Mohammed', last_name='Ahmed', email='Mohammfed@ex.com', gender='male',
     phone='010165', password='test0234'
 )
 patient4.save()

@@ -4,7 +4,7 @@
 from models.base_model import BaseModel
 from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
-from routes import db
+from models.base_model import db
 
 class Location(BaseModel, db.Model):
     __tablename__ = 'locations'

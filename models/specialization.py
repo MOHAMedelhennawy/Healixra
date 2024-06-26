@@ -4,7 +4,7 @@
 from models.base_model import BaseModel 
 from sqlalchemy import Column, String, DateTime, Text
 from sqlalchemy.orm import relationship
-from routes import db
+from models.base_model import db
 
 class Specialization(BaseModel, db.Model):
     __tablename__ = 'specializations'

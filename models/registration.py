@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField
-from wtforms.validators import Email, DataRequired, Length, Regexp, EqualTo
+from wtforms import StringField, PasswordField, SubmitField, BooleanField
+from wtforms.validators import Email, DataRequired, Length, Regexp, EqualTo, ValidationError
 
 class Registration(FlaskForm):
     first_name = StringField(
@@ -31,4 +31,16 @@ class Registration(FlaskForm):
         validators=[DataRequired(), EqualTo("password")],
         render_kw={"placeholder": "Confirm Password"}
     )
+
+    remember = BooleanField('Remember Me')
     submit = SubmitField('Sign Up')
+
+    def validate_email(self, email):
+        from models.patient import Patient
+        from models.base_model import db
+        from routes import app
+
+        with app.app_context():
+            patient_email = Patient.query.filter_by(email=email.data)
+            if patient_email:
+                raise ValidationError('Email already exist! Please try another one')

@@ -3,7 +3,7 @@
 
 from models.base_model import BaseModel 
 from sqlalchemy import Column, String, Integer, Text, ForeignKey
-from routes import db
+from models.base_model import db
 
 class Review(BaseModel, db.Model):
     __tablename__ = 'reviews'

@@ -3,7 +3,7 @@
 
 from models.base_model import BaseModel 
 from sqlalchemy import Column, String, DateTime, Boolean, ForeignKey
-from routes import db
+from models.base_model import db
 
 class Appointment(BaseModel, db.Model):
     __tablename__ = 'appointments'
