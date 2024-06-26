@@ -41,6 +41,8 @@ class Registration(FlaskForm):
         from routes import app
 
         with app.app_context():
-            patient_email = Patient.query.filter_by(email=email.data)
+            patient_email = Patient.query.filter_by(email=email.data).first()
+            print(patient_email)
+            print(email.data)
             if patient_email:
                 raise ValidationError('Email already exist! Please try another one')
