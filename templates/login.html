@@ -1,0 +1,42 @@
+{% extends "index.html" %}
+{% block content %}
+    <div class="form-container">
+            <div class="form login">
+                <span class="title">Login</span>
+                <form action="{{ url_for('login') }}" method="POST">
+                    {{ form.hidden_tag() }}
+                    <div class="input_field">
+                        {{ form.email(class_='invalid_input' if form.email.errors else 'input') }}
+                        <i class="uil uil-envelope icon"></i>
+                        {% if form.email.errors %}
+                            <span class="error">{{ form.email.errors[0] }}</span>
+                        {% endif %}
+                    </div>
+                    <div class="input_field">
+                        {{ form.password(class_='invalid_input' if form.password.errors else 'input password') }}
+                        <i class="uil uil-lock icon"></i>
+                        <i class="uil uil-eye-slash showHidePw"></i>
+                        {% if form.password.errors %}
+                            <span class="error">{{ form.password.errors[0] }}</span>
+                        {% endif %}
+                    </div>
+                    <div class="checkbox-text">
+                        <div class="checkbox-content">
+                            {{ form.remember() }}
+                            <label for="logCheck" class="text">Remember Me</label>
+                        </div>
+                        <a href="#" class="text">Forgot password?</a>
+                    </div>
+                    <div class="input_field button">
+                        {{ form.submit(class_='button') }}
+                    </div>
+                </form>
+                <div class="login-signup">
+                    <span class="text">Not a member?
+                        <a href="{{ url_for('register') }}" class="text signup-text">Sign Up</a>
+                    </span>
+                </div>
+            </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/form.js') }}"></script>
+    {% endblock content %}

@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en">
+  <body>
+    <form name="Item_1" action="/getLigand" method="POST">
+      <label for="exampleFormControlFile2">Choose colour</label>
+        <select name="colours">
+          {% for colour in colours %}
+            <option value="{{ colour }}" SELECTED>{{ colour }}</option>
+          {% endfor %}     
+        </select>
+    </form>
+  </body>
+</html>

@@ -1,0 +1,244 @@
+/* Add these styles to main.css */
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 100px); /* Adjust the height to fit well with the nav height */
+    /* background-color: rgb(136, 0, 255); */
+}
+
+.form{
+    background-color: rgb(255, 255, 255);
+    width: 50%;
+    max-width: 430;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.form-container .form{
+    padding: 30px;
+}
+
+.form-container .form .title{
+    position: relative;
+    font-size: 27px;
+    font-weight: 600;
+}
+
+.form .title::before{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    width: 30px;
+    background-color: #4070f4;
+    border-radius: 26px;
+}
+
+.login .input_field{
+    position: relative;
+    height: 50px;
+    width: 100%;
+    margin-top: 30px;
+}
+
+.input_field input{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 0 35px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    border-bottom: 3px solid #ccc;
+    border-top: 2px solid transparent;
+    transition: all 0.4s ease;
+}
+
+.input_field input:focus {
+    /* font-size: ; */
+    /* color: #ccc; */
+    font-size: 15px;
+    border-bottom-color: #4070f4;
+}
+
+.input_field input:focus ~ .icon {
+    color: #4070f4;
+}
+
+.input_field i{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+    font-size: 24px;
+}
+
+.input_field i.icon{
+    left: 0;
+    font-size: 24px; /* Ensure the font size is appropriate */
+}
+
+.input_field i.showHidePw{
+    right: 0;
+    cursor: pointer;
+    font-size: 24px; /* Ensure the font size is appropriate */
+    padding: 10px;
+}
+
+
+.form .checkbox-text{
+    margin-top: 10px;
+    display: flex;
+    align-items: centerf;
+    justify-content: space-between;
+}
+.checkbox-text .checkbox-content{
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-content input{
+    accent-color: #4070f4;
+    margin: 0 8px 0 4px;
+}
+.form .text{
+    color: #333;
+    font-size: 14px;
+}
+
+.form a.text{
+    color: #4070f4;
+    text-decoration: none;
+    transition: 0.4s ease;
+}
+
+.form a.text:hover{
+    color: #0735b6;
+}
+
+.form a:hover{
+    text-decoration: underline;
+}
+
+.form .button{
+    margin-top: 35px;
+    display: flex;
+    justify-content: center;
+
+}
+
+.form .button input{
+    border-radius: 10px;
+    color: #fff;
+    font-size: 17px;
+    font-weight: 500;
+    background-color: #4070f4;
+    transition: all 0.5s ease;
+    cursor: pointer;
+    bottom: -4px;
+}
+
+.form .button input:hover{
+    background-color: #265df2;
+    border-radius: 30px;
+    width: 70%;
+}
+
+.form .login-signup{
+    margin-top: 30px;
+    text-align: center;
+}
+
+.form .name {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+
+.form .name {
+    color: #265df2;
+}
+
+.input_field .error_msg{
+    width: 10px;
+    height: 3px;
+}
+
+.name .input_field .error_msg{
+    width: 100%;
+    height: 3px;
+    position: relative;
+    z-index: 3;
+}
+
+.dropdown{
+}
+.dropdown select{
+    width: 25%;
+    height: 100%;
+    border: none;
+    text-align: center;
+    font-size: 16px;
+    color: #999;
+    background-color: #fff;
+    border-bottom: 3px solid #ccc;
+    transition: all 0.4 ease;
+    /* background-color: #0735b6; */
+}
+.dropdown select:hover{
+    transition: all 1s ease;
+    border-bottom-color: #4070f4;
+
+}
+.dropdown select .select-items{
+    color: #265df2;
+    width: 150%;
+}
+
+/*.popup{
+ width: 400px;
+    background-color: #4070f4;
+    border: #265df2 solid 1px;
+    position: absolute;
+    text-align: center;
+    top: 30%;
+    left: 37%;
+    border-radius: 60px;
+    height: 284px;
+    transform: translate(0%, -80%) scale(0.1);
+    visibility: hidden;
+    transition: all 0.4s ease-in-out;
+}
+
+.open-popup{
+    visibility: visible;
+    top: 30%;
+    transition: all 0.4s ease-in-out;
+}
+.popup img{
+    width: 100px;
+    margin-top: -50px;
+}
+
+.popup h2{
+    font-size: 38px;
+    font-weight: 500;
+    margin: 0 30px 10px;
+}
+
+.popup button{
+    width: 80%;
+    margin-top: 10px;
+    padding: 10px 0;
+    background-color: #ffffff;
+    border-radius: 25px;
+    transition: 0.4s ease;
+}
+
+.popup button:hover{
+    width: 60%;
+} */
