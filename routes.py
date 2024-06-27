@@ -1,6 +1,7 @@
 from flask import Flask, render_template, flash, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
+from flask_login import LoginManager, login_user
 import os
 
 app = Flask(__name__)
@@ -14,7 +15,9 @@ HBNB_MYSQL_HOST = os.getenv('HBNB_MYSQL_HOST', 'localhost')
 HBNB_MYSQL_DB = os.getenv('HBNB_MYSQL_DB', 'Healixra')
 
 app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+pymysql://{HBNB_MYSQL_USER}:{HBNB_MYSQL_PWD}@{HBNB_MYSQL_HOST}/{HBNB_MYSQL_DB}'
-bcrypt = Bcrypt()
+bcrypt = Bcrypt(app)
+login_manager = LoginManager(app)
+
 
 @app.route("/")
 @app.route("/home")
@@ -64,10 +67,12 @@ def register():
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     from models.login import Login
+    from models.patient import Patient
     form = Login()
     if form.validate_on_submit():
-        if form.email.data == "elhennawy@ex.com" and form.password.data == "PASS!!!word123":
-            flash('You have been logged in successfully!', 'success')
+        patient = Patient.query.filter_by(email=form.email.data).first()
+        if patient and bcrypt.check_password_hash(user.password, form.password.data):
+            login_user(user, remember=form.remember.data)
             return redirect(url_for('homePage'))
         else:
             flash('Please check your email or password', 'danger')

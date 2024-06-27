@@ -6,6 +6,13 @@ from sqlalchemy import Column, String, ForeignKey, Text, BLOB, Table
 from sqlalchemy.orm import relationship
 from models.doctor import Doctor
 from models.base_model import db
+from routes import login_manager
+from flask_login import UserMixin
+
+
+@login_manager.user_loader
+def load_user(user_id):
+    return Patient.get(user_id)
 
 
 doctor_patient = db.Table(
@@ -16,7 +23,7 @@ doctor_patient = db.Table(
         )
 
 
-class Patient(BaseModel, db.Model):
+class Patient(BaseModel, db.Model, UserMixin):
     __tablename__ = 'patients'
     first_name = db.Column(db.String(128), nullable=False)
     last_name = db.Column(db.String(128), nullable=False)
