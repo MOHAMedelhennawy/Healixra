@@ -17,3 +17,5 @@ HBNB_MYSQL_DB = os.getenv('HBNB_MYSQL_DB', 'Healixra')
 app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+pymysql://{HBNB_MYSQL_USER}:{HBNB_MYSQL_PWD}@{HBNB_MYSQL_HOST}/{HBNB_MYSQL_DB}'
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
+
+login_manager.login_view = 'login'

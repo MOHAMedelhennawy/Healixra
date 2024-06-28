@@ -201,5 +201,45 @@
     "updated_at": "2024-06-27T15:55:57.816715",
     "id": "f7020c4e-9ce5-4ede-96db-287dbd70d07a",
     "__class__": "Patient"
+  },
+  "Patient.de76300d-edd2-4e71-9dec-ce0c498e50d8": {
+    "first_name": "Kheled",
+    "last_name": "Madkour",
+    "email": "Madkour@ex.com",
+    "password": "$2b$12$TPOrs06uGuD6ALRf3SIFFOcCy.VkMQlumtJihDGpT25DWuU1SsUhG",
+    "created_at": "2024-06-27T13:33:51.283549",
+    "updated_at": "2024-06-27T16:33:51.283603",
+    "id": "de76300d-edd2-4e71-9dec-ce0c498e50d8",
+    "__class__": "Patient"
+  },
+  "Patient.1ea14944-9aaf-489f-8dd6-8c6d0ad0c537": {
+    "first_name": "Mohamed",
+    "last_name": "Ramia",
+    "email": "Ramia@ex.com",
+    "password": "$2b$12$DTcpv2FnUvQqcFwEeL73vOpGqBpI5P6dUFaNZVpX.2NL5QIT13afW",
+    "created_at": "2024-06-27T13:35:58.452934",
+    "updated_at": "2024-06-27T16:35:58.452986",
+    "id": "1ea14944-9aaf-489f-8dd6-8c6d0ad0c537",
+    "__class__": "Patient"
+  },
+  "Patient.a6942767-270b-40b2-929b-706e4963d5b9": {
+    "first_name": "Ahmed",
+    "last_name": "mohamed",
+    "email": "afgkjh@gmailx.com",
+    "password": "$2b$12$ThN8fdbpdPMmtBU52rM/Fe/kKFFhGYTxcz4pJ415e1VWGSpWfTJh.",
+    "created_at": "2024-06-27T20:17:43.289113",
+    "updated_at": "2024-06-27T23:17:43.289190",
+    "id": "a6942767-270b-40b2-929b-706e4963d5b9",
+    "__class__": "Patient"
+  },
+  "Patient.24d3effe-79c9-43bd-84fd-199298084701": {
+    "first_name": "Mohamed",
+    "last_name": "Elhennawy",
+    "email": "elhennawy92@ex.com",
+    "password": "$2b$12$0NP38rS2LwdxSJMKI/sczOWxCGQaxIOQ.xQ2I1MzIm7ZJ08ax3636",
+    "created_at": "2024-06-28T07:02:04.709153",
+    "updated_at": "2024-06-28T10:02:04.709203",
+    "id": "24d3effe-79c9-43bd-84fd-199298084701",
+    "__class__": "Patient"
   }
 }

@@ -1,0 +1,12 @@
+{% extends "index.html"%}
+{% block content %}
+<section>
+    <div class="container">
+        <h1>
+            {{current_user.first_name}} {{current_user.last_name}} Account
+            <br>
+            {{current_user}}
+        </h1> 
+    </div>
+</section>
+{% endblock content %}

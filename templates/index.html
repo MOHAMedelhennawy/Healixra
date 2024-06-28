@@ -12,12 +12,24 @@
     <div class="container">
         <nav>
             <a href="{{ url_for('homePage') }}" class="logo">Healixra</a>
-            <ul>
+            <ul class="nav-left">
                 <li><a href="{{ url_for('homePage') }}">Home</a></li>
-                <li><a href="{{ url_for('aboutPage') }}">About</a></li>
                 <li><a href="{{ url_for('doctorsPage') }}">Doctors</a></li>
+            {% if current_user.is_authenticated %}
+            <li class="dropdown">
+                <!-- <a class="dropbtn" href=" title="character icons"></a> -->
+                <!-- <a href="{{ url_for('profile') }}" class="dropbtn"><img src="/static/icons/user.png"></a> -->
+                <a class="account"><span>{{current_user.first_name[0]}}</span></a>
+                <div class="dropdown-content">
+                    <!-- <p class="profile-name">{{current_user.first_name}} {{current_user.last_name}}</p> -->
+                    <a href="{{ url_for('profile') }}">Profile</a>
+                    <a href="{{ url_for('logout') }}">Logout</a>
+                </div>
+            </li>
+            {% else %}
                 <li><a href="{{ url_for('register') }}">Sign Up</a></li>
                 <li><a href="{{ url_for('login') }}">Login</a></li>
+            {% endif %}
             </ul>
         </nav>
         {% with messages = get_flashed_messages(with_categories=true) %}

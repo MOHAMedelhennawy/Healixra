@@ -1,8 +1,8 @@
-from flask import Flask, render_template, flash, redirect, url_for
+from flask import Flask, render_template, flash, redirect, url_for, request
 from models.registration import Registration
 from models.login import Login
 from models.patient import Patient
-
+from flask_login import login_user, current_user, logout_user, login_required
 from __init__ import app, bcrypt
 
 @app.route("/")
@@ -29,7 +29,8 @@ def contentPage():
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
-
+    if current_user.is_authenticated:
+        return redirect(url_for('homePage'))
     colours = ['Male', 'Female']
     form = Registration()
     if form.validate_on_submit():
@@ -51,20 +52,32 @@ def register():
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
-    from flask_login import login_user
+    if current_user.is_authenticated:
+        return redirect(url_for('homePage'))
+
     form = Login()
-    
     if form.validate_on_submit():
         with app.app_context():
             patient = Patient.query.filter_by(email=form.email.data).first()
             if patient and bcrypt.check_password_hash(patient.password, form.password.data):
                 login_user(patient, remember=form.remember.data)
+                next_page = request.args.get('next')
                 flash('You have been logged in successfully!', 'success')
-                return redirect(url_for('homePage'))
+                return redirect((next_page) if next_page else url_for('homePage'))
             else:
                 flash('Please check your email or password', 'danger')
     return render_template("login.html", title="Login", form=form)
 
+
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('homePage'))
+
+@app.route('/profile')
+@login_required
+def profile():
+    return render_template("profile.html", title='Profile')
 
 if __name__ == "__main__":
     app.run(debug=True)
