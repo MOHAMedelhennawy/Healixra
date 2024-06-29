@@ -7,23 +7,33 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='main.css')}}">    
     <link rel="stylesheet" href="{{ url_for('static', filename='forms.css') }}">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
+<style>
+    nav .left-side .logo::first-letter {
+        color: red;
+    }
+    </style>
 <body>
-    <div class="container">
+    
+    <div class="container base">
         <nav>
             <a href="{{ url_for('homePage') }}" class="logo">Healixra</a>
-            <ul class="nav-left">
+            <ul>
                 <li><a href="{{ url_for('homePage') }}">Home</a></li>
                 <li><a href="{{ url_for('doctorsPage') }}">Doctors</a></li>
             {% if current_user.is_authenticated %}
             <li class="dropdown">
-                <!-- <a class="dropbtn" href=" title="character icons"></a> -->
-                <!-- <a href="{{ url_for('profile') }}" class="dropbtn"><img src="/static/icons/user.png"></a> -->
-                <a class="account"><span>{{current_user.first_name[0]}}</span></a>
-                <div class="dropdown-content">
-                    <!-- <p class="profile-name">{{current_user.first_name}} {{current_user.last_name}}</p> -->
-                    <a href="{{ url_for('profile') }}">Profile</a>
-                    <a href="{{ url_for('logout') }}">Logout</a>
+                <a class="account-icon" onclick="showDropdown()"><span>{{current_user.first_name[0]}}</span></a>
+                <div id="myDropdown" class="dropdown-contents">
+                    <div class="db-content profile">
+                        <i class="fa-regular fa-circle-user"></i>
+                        <a href="{{ url_for('profile') }}">{{current_user.first_name[0:10]}} {{current_user.last_name[0:6]}}</a>
+                    </div>
+                    <div class="db-content logout">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                        <a href="{{ url_for('logout') }}">Logout</a>
+                    </div>
                 </div>
             </li>
             {% else %}
@@ -51,6 +61,10 @@
                     {% endif %}
                 {% endfor %}
             {% endif %}
+            <!-- <div class="popup">
+                <img src="/static/icons/check.png" alt="">
+
+            </div>   -->
         {% endwith %}
         {% block content %}
         {% endblock content %}
