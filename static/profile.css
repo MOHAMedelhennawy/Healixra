@@ -1,0 +1,49 @@
+.profile{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.profile-content{
+    width: 66%;
+    margin-top: 12px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.account-info{
+    width: 100%;
+    position: relative;
+    /* top: -108px; */
+    padding: 0 18px;
+
+}
+.image-username{
+    width: 100%;
+}
+
+.profile-content .image-username img{
+    width: 20%;
+    height: 40%;
+    position: relative;
+    border-radius: 50%;
+    left: 4%;
+}
+
+.account-info .image-username .text{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 50px;
+}
+
+.account-info .image-username .text button{
+    background-color: #3463ef;
+    width: 10%;
+}
+
+.account-info .image-username .text a{
+    color: white;
+    text-decoration: none;
+}
+
+.account-info .image-username .text button:hover {
+    background-color: #5079f3;
+}

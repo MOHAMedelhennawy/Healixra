@@ -1,12 +1,41 @@
 {% extends "index.html"%}
 {% block content %}
-<section>
-    <div class="container profile">
-        <h1>
-            {{current_user.first_name}} {{current_user.last_name}} Account
-            <br>
-            {{current_user}}
-        </h1> 
+    <div class="profile">
+        <section class="profile-content user-info">
+            <div class="profile-background">
+            </div>
+            <div class="account-info">
+                <div class="image-username">
+                    <img src="/static/images/307ce493-b254-4b2d-8ba4-d12c080d6651.jpg" alt="">
+                    <div class="text">
+                        <h1 class="username">{{current_user.first_name}} {{current_user.last_name}}</h1>
+                        <button type="text"><a href="{{ url_for('settings') }}">edit profile</a></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="profile-content user-appointments">
+            <h1 class="title">Your appointmetns</h1>
+            <div class="appointmetns">
+                <h1>...</h1>
+            </div>
+        </section>
     </div>
-</section>
+    <!--         
+            <section class="profile-content user-info">
+                <div class="profile-background">
+                    <h1>Welcome, {{current_user.first_name}} {{current_user.last_name}}</h1>
+                </div>
+                <div class="account-info">
+                    <div class="image-username">
+                        <img src="/static/images/307ce493-b254-4b2d-8ba4-d12c080d6651.jpg" alt="">
+                        <div class="text">
+                            <h1 class="username">{{current_user.first_name}} {{current_user.last_name}}</h1>
+                            <button><a href="{{ url_for('homePage') }}">Update your profile</a></button>
+                        </div>
+                    </div>
+                </div>
+            </section> -->
+    </div>
 {% endblock content %}

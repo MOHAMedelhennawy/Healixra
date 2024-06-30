@@ -5,17 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My project</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='main.css')}}">    
+    <link rel="stylesheet" href="{{ url_for('static', filename='home.css')}}">    
+    <link rel="stylesheet" href="{{ url_for('static', filename='profile.css')}}"> 
+    <link rel="stylesheet" href="{{ url_for('static', filename='settings.css')}}"> 
     <link rel="stylesheet" href="{{ url_for('static', filename='forms.css') }}">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-<style>
-    nav .left-side .logo::first-letter {
-        color: red;
-    }
-    </style>
 <body>
-    
     <div class="container base">
         <nav>
             <a href="{{ url_for('homePage') }}" class="logo">Healixra</a>
@@ -26,9 +23,13 @@
             <li class="dropdown">
                 <a class="account-icon" onclick="showDropdown()"><span>{{current_user.first_name[0]}}</span></a>
                 <div id="myDropdown" class="dropdown-contents">
-                    <div class="db-content profile">
+                    <div class="db-content icon">
                         <i class="fa-regular fa-circle-user"></i>
                         <a href="{{ url_for('profile') }}">{{current_user.first_name[0:10]}} {{current_user.last_name[0:6]}}</a>
+                    </div>
+                    <div class="db-content icon">
+                        <i class="fa-solid fa-gear"></i>
+                        <a href="{{ url_for('settings') }}">Settings</a>
                     </div>
                     <div class="db-content logout">
                         <i class="fa-solid fa-arrow-right-from-bracket"></i>
@@ -46,14 +47,12 @@
             {% if messages %}
                 {% for category, message in messages %}
                     {% if category == 'success'%}
-                        <!-- <div class="flash">
+                        <div class="flash">
                             <span>{{message}}</span>
-                        </div> -->
-                        <div class="popup">
+                        </div>
+                        <!-- <div class="popup">
                             <img src="/static/icons/check.png" alt="">
-                            <h2>{{message}}</h2>
-                            <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p> -->
-                        </div>  
+                        </div>   -->
                     {% else %}
                         <div class="flash damage">
                             <span>{{message}}</span>
@@ -61,11 +60,11 @@
                     {% endif %}
                 {% endfor %}
             {% endif %}
-            <!-- <div class="popup">
-                <img src="/static/icons/check.png" alt="">
-
-            </div>   -->
         {% endwith %}
+        <!-- <div class="flash">
+            
+            <span>Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
+        </div> -->
         {% block content %}
         {% endblock content %}
     <!-- <footer class="footer">

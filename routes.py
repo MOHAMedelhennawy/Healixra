@@ -79,5 +79,13 @@ def logout():
 def profile():
     return render_template("profile.html", title='Profile')
 
+
+@app.route('/settings')
+@login_required
+def settings():
+    form = Login()
+    return render_template("settings.html", title='settings', form=form)
+
+
 if __name__ == "__main__":
     app.run(debug=True)

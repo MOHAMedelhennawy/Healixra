@@ -1,0 +1,35 @@
+{% extends "index.html"%}
+{% block content %}
+    <div class="profile">
+        <section class="profile-content">
+            <div class="edit-info">
+                <div class="image-username">
+                    <img src="/static/images/307ce493-b254-4b2d-8ba4-d12c080d6651.jpg" alt="">
+                    <div class="text">
+                        <h1 class="username">{{current_user.first_name}} {{current_user.last_name}}</h1>
+                    </div>
+                    <div class="username">
+                        <div class="first_name text-field">
+                            <h4>Frst Name</h4>
+                            <input type="text" placeholder="First Name">
+                        </div>
+                        <div class="last_name text-field">
+                            <h4>Last Name</h4>
+                            <input type="text" placeholder="Last Name">
+                        </div>
+                    </div>
+                    <div class="email text-field">
+                        <h4>Email</h4>
+                        <input type="text" placeholder="Email">
+                    </div>
+                    <div class="img">
+                        <h4>Image</h4>
+                        <input type="file" id="myFile" name="filename">
+                    </div>
+                    <input type="submit" placeholder="">
+                </div>
+            </div>
+        </section>
+    </div>
+
+{% endblock content %}
