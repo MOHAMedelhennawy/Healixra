@@ -12,7 +12,7 @@
         <ul>
             {% for doctor in doctors %}
                 <li>
-                    <a href="{{ url_for('doctor_profile', doctor_id=doctor.id) }}">{{ doctor.name }}</a> - {{ doctor.specialization }} - {{ doctor.location }}
+                    {{ doctor.first_name }} {{ doctor.specialization.specialization_name }} {{ doctor.location.location_name }}
                 </li>
             {% endfor %}
         </ul>
@@ -20,6 +20,6 @@
         <p>No doctors found matching your criteria.</p>
     {% endif %}
     
-    <a href="{{ url_for('home') }}">Back to Search</a>
+    <a href="{{ url_for('homePage') }}">Back to Search</a>
 </body>
 </html>

@@ -1,5 +1,6 @@
 from flask import Flask, render_template, flash, redirect, url_for, request
 from models.registration import Registration
+from models.specialization import Specialization
 from models.login import Login
 from models.patient import Patient
 from models.search import Search
@@ -9,9 +10,19 @@ from flask_login import login_user, current_user, logout_user, login_required
 from __init__ import app, bcrypt
 
 @app.route("/")
-@app.route("/home")
+@app.route("/home", methods=['GET', 'POST'])
 def homePage():
-    return render_template("home.html")
+    form = Search()
+    if request.method == 'POST':
+        specialization_input = form.specialization.data
+        location_input = form.location.data
+
+        specialization = Specialization.query.filter_by(specialization_name=specialization_input).first()
+        location = Location.query.filter_by(location_name=location_input).first()
+        matched_doctors = Doctor.query.filter_by(specialization_id=specialization.id).all()
+        return render_template('search_results.html', doctors=matched_doctors)
+    return render_template("home.html", search_form=form)
+
 
 @app.route("/about")
 def aboutPage():
@@ -88,13 +99,19 @@ def settings():
     form = Login()
     return render_template("settings.html", title='settings', form=form)
 
-@app.route('/search')
+@app.route('/search', methods=['GET'])
 def search():
     form = Search()
-    specialization = form.specialization.data
-    location = form.location.data
-    location_id = Location.query.filter_by(location=location)
-    matched_doctors = Doctor.query.filter_by(specialization=specialization, location_id=location_id)
+#     specialization = form.specialization.data
+#     print(specialization)
+#     location = form.location.data
+#     print(location)
+#     location_id = Location.query.filter_by(location_name=location).first()['id']
+#     print(location_id)
+#     specialization_id = Specialization.query.filter_by(specialization_name=specialization).first()['id']
+#     print(specialization_id)
+#     matched_doctors = Doctor.query.filter_by(specialization_id=specialization_id, location_id=location_id).all()
+#     print(matched_doctors)
     return render_template('search_results.html', doctors=matched_doctors)
 
 @app.route('/doctor/<int:doctor_id>')
