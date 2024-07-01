@@ -8,7 +8,7 @@
 }
 
 .form{
-    background-color: #0735b6;
+    background-color: #ffff;
     width: 50%;
     max-width: 430;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
@@ -196,8 +196,4 @@ form button {
     border: none;
     cursor: pointer;
     transition: background-color 0.3s;
-}
-
-form button:hover {
-    background-color: #0056b3;
 }

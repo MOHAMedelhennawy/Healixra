@@ -2,6 +2,9 @@ from flask import Flask, render_template, flash, redirect, url_for, request
 from models.registration import Registration
 from models.login import Login
 from models.patient import Patient
+from models.search import Search
+from models.doctor import Doctor
+from models.location import Location
 from flask_login import login_user, current_user, logout_user, login_required
 from __init__ import app, bcrypt
 
@@ -79,19 +82,17 @@ def logout():
 def profile():
     return render_template("profile.html", title='Profile')
 
-<<<<<<< HEAD
-
 @app.route('/settings')
 @login_required
 def settings():
     form = Login()
     return render_template("settings.html", title='settings', form=form)
 
-=======
 @app.route('/search')
 def search():
+    form = Search()
     specialization = form.specialization.data
-    location = form.specialization.data
+    location = form.location.data
     location_id = Location.query.filter_by(location=location)
     matched_doctors = Doctor.query.filter_by(specialization=specialization, location_id=location_id)
     return render_template('search_results.html', doctors=matched_doctors)
@@ -104,7 +105,6 @@ def doctor_profile(doctor_id):
         return render_template('doctor_profile.html', doctor=doctor)
     else:
         return "Doctor not found", 404 
->>>>>>> 784a030 (search function)
 
 if __name__ == "__main__":
     app.run(debug=True)
