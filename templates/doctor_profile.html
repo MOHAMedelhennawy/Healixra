@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Profile</title>
+</head>
+<body>
+    <h1>{{ doctor.name }}</h1>
+    <p>Specialization: {{ doctor.specialization }}</p>
+    <p>Location: {{ doctor.location }}</p>
+    
+    <a href="{{ url_for('home') }}">Back to Search</a>
+</body>
+</html>

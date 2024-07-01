@@ -79,6 +79,7 @@ def logout():
 def profile():
     return render_template("profile.html", title='Profile')
 
+<<<<<<< HEAD
 
 @app.route('/settings')
 @login_required
@@ -86,6 +87,24 @@ def settings():
     form = Login()
     return render_template("settings.html", title='settings', form=form)
 
+=======
+@app.route('/search')
+def search():
+    specialization = form.specialization.data
+    location = form.specialization.data
+    location_id = Location.query.filter_by(location=location)
+    matched_doctors = Doctor.query.filter_by(specialization=specialization, location_id=location_id)
+    return render_template('search_results.html', doctors=matched_doctors)
+
+@app.route('/doctor/<int:doctor_id>')
+def doctor_profile(doctor_id):
+    doctors = Doctor.query.filter_by(doctor_id=doctor_id)
+    doctor = next((doc for doc in doctors), None)
+    if doctor:
+        return render_template('doctor_profile.html', doctor=doctor)
+    else:
+        return "Doctor not found", 404 
+>>>>>>> 784a030 (search function)
 
 if __name__ == "__main__":
     app.run(debug=True)
