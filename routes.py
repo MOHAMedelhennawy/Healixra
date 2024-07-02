@@ -1,11 +1,13 @@
 from flask import Flask, render_template, flash, redirect, url_for, request
 from models.registration import Registration
 from models.specialization import Specialization
+from models.login import Login, updateProfile
 from models.login import Login
 from models.patient import Patient
 from models.search import Search
 from models.doctor import Doctor
 from models.location import Location
+from models.base_model import db
 from flask_login import login_user, current_user, logout_user, login_required
 from __init__ import app, bcrypt
 
@@ -90,14 +92,29 @@ def logout():
 
 @app.route('/profile')
 @login_required
-def profile():
-    return render_template("profile.html", title='Profile')
+def profile():    
+    image_filename = current_user.images.decode() if isinstance(current_user.images, bytes) else current_user.images
+    image_file = url_for('static', filename=f'user_images/{image_filename}') if image_filename else None
+    return render_template("profile.html", title='Profile', image_file=image_file)
 
-@app.route('/settings')
+@app.route('/settings', methods=['GET', 'POST'])
 @login_required
 def settings():
-    form = Login()
-    return render_template("settings.html", title='settings', form=form)
+    form = updateProfile()
+    if form.validate_on_submit():
+        current_user.first_name = form.first_name.data
+        current_user.last_name = form.last_name.data
+        db.session.commit()
+        flash("Your profile has been updated", "success")
+        return redirect(url_for('profile'))
+    elif request.method == 'GET':
+        form.first_name.data = current_user.first_name
+        form.last_name.data = current_user.last_name
+        form.email.data = current_user.email
+    image_filename = current_user.images.decode() if isinstance(current_user.images, bytes) else current_user.images
+    image_file = url_for('static', filename=f'user_images/{image_filename}') if image_filename else None
+    return render_template("settings.html", title='settings', form=form, image_file=image_file)
+
 
 @app.route('/search', methods=['GET'])
 def search():
@@ -112,7 +129,7 @@ def search():
 #     print(specialization_id)
 #     matched_doctors = Doctor.query.filter_by(specialization_id=specialization_id, location_id=location_id).all()
 #     print(matched_doctors)
-    return render_template('search_results.html', doctors=matched_doctors)
+    return render_template('search_results.html')
 
 @app.route('/doctor/<int:doctor_id>')
 def doctor_profile(doctor_id):

@@ -1,35 +1,68 @@
-{% extends "index.html"%}
+{% extends "index.html" %}
 {% block content %}
-    <div class="profile">
-        <section class="profile-content">
-            <div class="edit-info">
-                <div class="image-username">
-                    <img src="/static/images/307ce493-b254-4b2d-8ba4-d12c080d6651.jpg" alt="">
-                    <div class="text">
-                        <h1 class="username">{{current_user.first_name}} {{current_user.last_name}}</h1>
-                    </div>
-                    <div class="username">
-                        <div class="first_name text-field">
-                            <h4>Frst Name</h4>
-                            <input type="text" placeholder="First Name">
-                        </div>
-                        <div class="last_name text-field">
-                            <h4>Last Name</h4>
-                            <input type="text" placeholder="Last Name">
-                        </div>
-                    </div>
-                    <div class="email text-field">
-                        <h4>Email</h4>
-                        <input type="text" placeholder="Email">
-                    </div>
-                    <div class="img">
-                        <h4>Image</h4>
-                        <input type="file" id="myFile" name="filename">
-                    </div>
-                    <input type="submit" placeholder="">
+<div class="form-container">
+    <div class="form login setting">
+        <img src="{{image_file}}" alt="">
+        <div class="upload-img">
+            {{ form.image(label='Choose file', class_='file-input') }}
+        </div>
+        <!-- <img src="/static/user_images/user.jpg" alt=""> -->
+        <span class="title">Update your profile</span>
+        <form action="{{ url_for('settings') }}" method="POST"> 
+            {{ form.hidden_tag() }}
+            <div class="name">
+                <!-- First Name input field -->
+                <div class="input_field">
+                    {{ form.first_name(class_='input first_name') }}
+                    <i class="uil uil-user icon"></i>
                 </div>
-            </div>
-        </section>
-    </div>
+                {% if form.first_name.errors %}
+                {% for error in form.first_name.errors %}
+                    <div class="error_msg">
+                        <span style="color: red;">{{error}}</span>
+                    </div>
+                {% endfor %}
+                {% endif %}
 
+                <!-- Last Name input field -->
+                <div class="input_field">
+                    {{ form.last_name(class_='input') }}
+                    <i class="uil uil-user icon"></i>
+                </div>
+                {% if form.last_name.errors %}
+                {% for error in form.last_name.errors %}
+                    <div class="error_msg">
+                        <span style="color: red;">{{ error }}</span>
+                    </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+
+            <!-- Email input field -->
+            <div class="input_field readonly">
+                {{ form.email(class_='input email')}}
+                <i class="uil uil-envelope icon"></i>
+            </div>
+            {% if form.email.errors %}
+            <style>
+                .input_field .email:focus {
+                    border-bottom-color: red;
+                }
+                
+                .input_field .email:focus ~ .icon {
+                    color: red;
+                }
+            </style>
+                <div class="error_msg">
+                    <span style="color: red;">{{ form.email.errors[0] }}</span>
+                </div>
+            {% endif %}
+        
+            <!-- Sign in redirection -->
+            <div class="input_field button">
+                {{ form.submit(class_='button') }}
+        </form>
+    </div>
+</div>
+<script src="{{ url_for('static', filename='js/form.js') }}"></script>
 {% endblock content %}

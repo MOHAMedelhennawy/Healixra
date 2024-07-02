@@ -8,7 +8,7 @@
 }
 
 .form{
-    background-color: #ffff;
+    background-color: rgb(255, 255, 255);
     width: 50%;
     max-width: 430;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
@@ -173,27 +173,34 @@
     position: relative;
     z-index: 3;
 }
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    max-width: 400px;
-    margin: 0 auto;
+
+.readonly input{
+    background-color: #c3c3c3;
+}
+.readonly .icon{
+    color: #eeeded;
 }
 
-form label {
-    font-weight: bold;
+.setting{
+    width: 80%;
 }
 
-form select, form input, form button {
-    padding: 10px;
-    font-size: 16px;
+.setting span{
+    display: block;
 }
 
-form button {
-    background-color: #007bff;
-    color: #000;
+.setting .button input{
+    /* align-self: flex-start; */
+    width: 50%;
+}
+
+.setting .button input:hover{
+    /* align-self: flex-start; */
+    width: 48%;
+}
+
+.setting .upload-img{
+    /* position: relative; */
+    margin-top: 30px;
     border: none;
-    cursor: pointer;
-    transition: background-color 0.3s;
 }

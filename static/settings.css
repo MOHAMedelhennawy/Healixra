@@ -1,23 +1,8 @@
-.username{
-    display: flex;
-    /* justify-content: space-around; */
-    gap: 25%;
-}
 
-.edit-info{
-    width: 100%;
+.form-container img{
+
+    width: 20%;
+    height: 40%;
     position: relative;
-    padding: 0 18px;
-}
-
-.edit-info .image-username > div{
-    padding-bottom: 30px;
-}
-.text-field{
-}
-.text-field input{
-    border: none;
-    padding-top: 10px;
-    font-size: large;
-    border-bottom: 1px #3463ef solid;
+    border-radius: 50%;
 }

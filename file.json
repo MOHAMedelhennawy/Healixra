@@ -251,5 +251,15 @@
     "updated_at": "2024-06-30T10:11:56.071337",
     "id": "7d673ad7-f965-44c5-9229-ad68e4e2721f",
     "__class__": "Patient"
+  },
+  "Patient.b5d2c043-adc0-41f8-9c24-6950b4cd0d59": {
+    "first_name": "Ahmed ",
+    "last_name": "Ramia",
+    "email": "ramia@ex.com",
+    "password": "$2b$12$F1t0iCWnOz8bJGkuLXFBiOEsB24oiX.tJtx0TzOXaLKY/DSrD8HwC",
+    "created_at": "2024-07-02T05:26:27.655599",
+    "updated_at": "2024-07-02T08:26:27.655661",
+    "id": "b5d2c043-adc0-41f8-9c24-6950b4cd0d59",
+    "__class__": "Patient"
   }
 }
