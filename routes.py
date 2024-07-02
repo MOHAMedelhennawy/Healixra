@@ -18,13 +18,24 @@ def homePage():
     if request.method == 'POST':
         specialization_input = form.specialization.data
         location_input = form.location.data
-
-        specialization = Specialization.query.filter_by(specialization_name=specialization_input).first()
-        location = Location.query.filter_by(location_name=location_input).first()
-        matched_doctors = Doctor.query.filter_by(specialization_id=specialization.id).all()
-        return render_template('search_results.html', doctors=matched_doctors)
+        return redirect(url_for('search', specialization=specialization_input, location=location_input))
     return render_template("home.html", search_form=form)
 
+@app.route('/search/<specialization>/<location>', methods=['GET'])
+def search(specialization, location):
+    specialization_obj = Specialization.query.filter_by(specialization_name=specialization).first()
+    location_obj = Location.query.filter_by(location_name=location).first()
+    matched_doctors = Doctor.query.filter_by(location_id=location_obj.id).all()
+    return render_template('search_results.html', doctors=matched_doctors)
+
+@app.route('/doctor/<int:doctor_id>')
+def doctor_profile(doctor_id):
+    doctors = Doctor.query.filter_by(doctor_id=doctor_id)
+    doctor = next((doc for doc in doctors), None)
+    if doctor:
+        return render_template('doctor_profile.html', doctor=doctor)
+    else:
+        return "Doctor not found", 404 
 
 @app.route("/about")
 def aboutPage():
@@ -57,7 +68,6 @@ def register():
             email=form.email.data,
             password=hashed_password
         )
-        # save not working if you didn't run the server in the 'db' mode
         patient.save()
 
         name = form.first_name.data + ' ' + form.last_name.data
@@ -115,30 +125,6 @@ def settings():
     image_file = url_for('static', filename=f'user_images/{image_filename}') if image_filename else None
     return render_template("settings.html", title='settings', form=form, image_file=image_file)
 
-
-@app.route('/search', methods=['GET'])
-def search():
-    form = Search()
-#     specialization = form.specialization.data
-#     print(specialization)
-#     location = form.location.data
-#     print(location)
-#     location_id = Location.query.filter_by(location_name=location).first()['id']
-#     print(location_id)
-#     specialization_id = Specialization.query.filter_by(specialization_name=specialization).first()['id']
-#     print(specialization_id)
-#     matched_doctors = Doctor.query.filter_by(specialization_id=specialization_id, location_id=location_id).all()
-#     print(matched_doctors)
-    return render_template('search_results.html')
-
-@app.route('/doctor/<int:doctor_id>')
-def doctor_profile(doctor_id):
-    doctors = Doctor.query.filter_by(doctor_id=doctor_id)
-    doctor = next((doc for doc in doctors), None)
-    if doctor:
-        return render_template('doctor_profile.html', doctor=doctor)
-    else:
-        return "Doctor not found", 404 
 
 if __name__ == "__main__":
     app.run(debug=True)

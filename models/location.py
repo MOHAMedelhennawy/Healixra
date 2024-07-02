@@ -1,10 +1,12 @@
 #!/usr/bin/python3
 """Location Class definition"""
 
+import models
 from models.base_model import BaseModel
 from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
 from models.base_model import db
+from __init__ import app
 
 class Location(BaseModel, db.Model):
     __tablename__ = 'locations'

@@ -261,5 +261,173 @@
     "updated_at": "2024-07-02T08:26:27.655661",
     "id": "b5d2c043-adc0-41f8-9c24-6950b4cd0d59",
     "__class__": "Patient"
+  },
+  "Specialization.502aaa13-6898-4d80-a1e1-d1d5634f934b": {
+    "specialization_name": "Anesthesiology",
+    "created_at": "2024-07-02T10:06:08.143657",
+    "updated_at": "2024-07-02T13:06:08.143750",
+    "id": "502aaa13-6898-4d80-a1e1-d1d5634f934b",
+    "__class__": "Specialization"
+  },
+  "Specialization.b428f373-17e2-4edd-bc6a-bcca6b2ed425": {
+    "specialization_name": "Cardiology",
+    "created_at": "2024-07-02T10:06:08.145189",
+    "updated_at": "2024-07-02T13:06:08.145272",
+    "id": "b428f373-17e2-4edd-bc6a-bcca6b2ed425",
+    "__class__": "Specialization"
+  },
+  "Specialization.b141b30e-f005-4038-97ed-668df762bd89": {
+    "specialization_name": "Dermatology",
+    "created_at": "2024-07-02T10:06:08.146619",
+    "updated_at": "2024-07-02T13:06:08.146725",
+    "id": "b141b30e-f005-4038-97ed-668df762bd89",
+    "__class__": "Specialization"
+  },
+  "Specialization.7deb5b8d-ad54-4715-8e87-75663c554f59": {
+    "specialization_name": "Endocrinology",
+    "created_at": "2024-07-02T10:06:08.149254",
+    "updated_at": "2024-07-02T13:06:08.149306",
+    "id": "7deb5b8d-ad54-4715-8e87-75663c554f59",
+    "__class__": "Specialization"
+  },
+  "Specialization.5da85169-3bdb-462d-9acd-1583e55c5b24": {
+    "specialization_name": "Family Medicine",
+    "created_at": "2024-07-02T10:06:08.150022",
+    "updated_at": "2024-07-02T13:06:08.150044",
+    "id": "5da85169-3bdb-462d-9acd-1583e55c5b24",
+    "__class__": "Specialization"
+  },
+  "Specialization.81aa4eb2-c0d4-49e3-bed2-ca18983476d4": {
+    "specialization_name": "Gastroenterology",
+    "created_at": "2024-07-02T10:06:08.150756",
+    "updated_at": "2024-07-02T13:06:08.150777",
+    "id": "81aa4eb2-c0d4-49e3-bed2-ca18983476d4",
+    "__class__": "Specialization"
+  },
+  "Specialization.809b4e24-4668-4231-9f02-3341b77a96f9": {
+    "specialization_name": "Geriatrics",
+    "created_at": "2024-07-02T10:06:08.151689",
+    "updated_at": "2024-07-02T13:06:08.151722",
+    "id": "809b4e24-4668-4231-9f02-3341b77a96f9",
+    "__class__": "Specialization"
+  },
+  "Specialization.a1f2bdaf-0f31-4345-9c42-e00fa120add5": {
+    "specialization_name": "Hematology",
+    "created_at": "2024-07-02T10:06:08.155218",
+    "updated_at": "2024-07-02T13:06:08.155279",
+    "id": "a1f2bdaf-0f31-4345-9c42-e00fa120add5",
+    "__class__": "Specialization"
+  },
+  "Specialization.cda9adea-b811-495c-b257-e57e5ab6772f": {
+    "specialization_name": "Hepatology",
+    "created_at": "2024-07-02T10:06:08.156238",
+    "updated_at": "2024-07-02T13:06:08.156285",
+    "id": "cda9adea-b811-495c-b257-e57e5ab6772f",
+    "__class__": "Specialization"
+  },
+  "Specialization.c9c5820a-7785-412b-be6f-c0698668516b": {
+    "specialization_name": "Infectious Diseases",
+    "created_at": "2024-07-02T10:06:08.157608",
+    "updated_at": "2024-07-02T13:06:08.157687",
+    "id": "c9c5820a-7785-412b-be6f-c0698668516b",
+    "__class__": "Specialization"
+  },
+  "Specialization.fc6ff140-0ffe-41b8-a05d-de06f1da953f": {
+    "specialization_name": "Nephrology",
+    "created_at": "2024-07-02T10:06:08.159001",
+    "updated_at": "2024-07-02T13:06:08.159047",
+    "id": "fc6ff140-0ffe-41b8-a05d-de06f1da953f",
+    "__class__": "Specialization"
+  },
+  "Specialization.764e3c01-f9df-4ceb-ac17-32593cf61c63": {
+    "specialization_name": "Neurology",
+    "created_at": "2024-07-02T10:06:08.161138",
+    "updated_at": "2024-07-02T13:06:08.161204",
+    "id": "764e3c01-f9df-4ceb-ac17-32593cf61c63",
+    "__class__": "Specialization"
+  },
+  "Specialization.256fa295-699a-4b10-bf68-b07e0eb743c2": {
+    "specialization_name": "Obstetrics and Gynecology",
+    "created_at": "2024-07-02T10:06:08.162178",
+    "updated_at": "2024-07-02T13:06:08.162202",
+    "id": "256fa295-699a-4b10-bf68-b07e0eb743c2",
+    "__class__": "Specialization"
+  },
+  "Specialization.e49eea31-71b5-4a24-86ac-39de357618ad": {
+    "specialization_name": "Oncology",
+    "created_at": "2024-07-02T10:06:08.162838",
+    "updated_at": "2024-07-02T13:06:08.162858",
+    "id": "e49eea31-71b5-4a24-86ac-39de357618ad",
+    "__class__": "Specialization"
+  },
+  "Specialization.72e5cbc5-1091-4638-80bb-55f54c0c3e22": {
+    "specialization_name": "Ophthalmology",
+    "created_at": "2024-07-02T10:06:08.166920",
+    "updated_at": "2024-07-02T13:06:08.166969",
+    "id": "72e5cbc5-1091-4638-80bb-55f54c0c3e22",
+    "__class__": "Specialization"
+  },
+  "Specialization.ed0c6c86-6eb6-4ef6-bcc2-a5cfce5ea62f": {
+    "specialization_name": "Orthopedic Surgery",
+    "created_at": "2024-07-02T10:06:08.167895",
+    "updated_at": "2024-07-02T13:06:08.167915",
+    "id": "ed0c6c86-6eb6-4ef6-bcc2-a5cfce5ea62f",
+    "__class__": "Specialization"
+  },
+  "Specialization.f0613b12-c8fd-4696-aaca-7de81eabb4ae": {
+    "specialization_name": "Otolaryngology (ENT)",
+    "created_at": "2024-07-02T10:06:08.168662",
+    "updated_at": "2024-07-02T13:06:08.168682",
+    "id": "f0613b12-c8fd-4696-aaca-7de81eabb4ae",
+    "__class__": "Specialization"
+  },
+  "Specialization.85634514-11d9-4b38-89e3-7e44d95e25ae": {
+    "specialization_name": "Pediatrics",
+    "created_at": "2024-07-02T10:06:08.172378",
+    "updated_at": "2024-07-02T13:06:08.172467",
+    "id": "85634514-11d9-4b38-89e3-7e44d95e25ae",
+    "__class__": "Specialization"
+  },
+  "Specialization.212cb2a2-39e1-4684-adea-a72f0f38adc7": {
+    "specialization_name": "Pulmonology",
+    "created_at": "2024-07-02T10:06:08.173830",
+    "updated_at": "2024-07-02T13:06:08.173862",
+    "id": "212cb2a2-39e1-4684-adea-a72f0f38adc7",
+    "__class__": "Specialization"
+  },
+  "Specialization.74bdd6b4-95cc-4c8d-a883-8867a227affe": {
+    "specialization_name": "Psychiatry",
+    "created_at": "2024-07-02T10:06:08.174570",
+    "updated_at": "2024-07-02T13:06:08.174599",
+    "id": "74bdd6b4-95cc-4c8d-a883-8867a227affe",
+    "__class__": "Specialization"
+  },
+  "Specialization.c0ffd448-45ca-4991-8a19-8d12ec096cab": {
+    "specialization_name": "Respiratory Medicine",
+    "created_at": "2024-07-02T10:06:08.178039",
+    "updated_at": "2024-07-02T13:06:08.178111",
+    "id": "c0ffd448-45ca-4991-8a19-8d12ec096cab",
+    "__class__": "Specialization"
+  },
+  "Specialization.125ffe44-3617-4c0e-84e1-e33a398fb8e2": {
+    "specialization_name": "Rheumatology",
+    "created_at": "2024-07-02T10:06:08.180074",
+    "updated_at": "2024-07-02T13:06:08.180131",
+    "id": "125ffe44-3617-4c0e-84e1-e33a398fb8e2",
+    "__class__": "Specialization"
+  },
+  "Specialization.29654661-9405-4846-8920-01bbe06773f5": {
+    "specialization_name": "Surgery",
+    "created_at": "2024-07-02T10:06:08.181602",
+    "updated_at": "2024-07-02T13:06:08.181657",
+    "id": "29654661-9405-4846-8920-01bbe06773f5",
+    "__class__": "Specialization"
+  },
+  "Specialization.a5ffdf85-862a-4337-aea9-4bc4aa371d77": {
+    "specialization_name": "Urology",
+    "created_at": "2024-07-02T10:06:10.100239",
+    "updated_at": "2024-07-02T13:06:10.100318",
+    "id": "a5ffdf85-862a-4337-aea9-4bc4aa371d77",
+    "__class__": "Specialization"
   }
 }

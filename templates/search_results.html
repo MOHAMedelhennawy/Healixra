@@ -1,25 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search Results</title>
-</head>
-<body>
-    <h1>Search Results</h1>
-    
-    {% if doctors %}
-        <ul>
+{% extends "index.html"%}
+{% block content %}
+<div class="background">
+    <h1>Chose Your Doctor</h1>
+</div>
+<div class="result-container">
+
+    <div class="result-content">
+        <div class="doctors">
             {% for doctor in doctors %}
-                <li>
-                    {{ doctor.first_name }} {{ doctor.specialization.specialization_name }} {{ doctor.location.location_name }}
-                </li>
+                <h3>Name: {{doctor.first_name}} {{doctor.last_name}}</h3>
+                <h3>Location: {{doctor.location.location_name}}</h3>
+                <h3>Specialization:  {{doctor.specialization.specialization_name}}</h3>
+                <h2>=============================================</h2>
             {% endfor %}
-        </ul>
-    {% else %}
-        <p>No doctors found matching your criteria.</p>
-    {% endif %}
-    
-    <a href="{{ url_for('homePage') }}">Back to Search</a>
-</body>
-</html>
+        </div>
+        <div class="filter">
+            <div class="">
+                <ul>
+                    <li>test1</li>
+                    <li>test1</li>
+                    <li>test1</li>
+                    <li>test1</li>
+                    <li>test1</li>
+                    <li>test1</li>
+                    <li>test1</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
