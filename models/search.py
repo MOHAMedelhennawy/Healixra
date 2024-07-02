@@ -15,6 +15,7 @@ class Search(FlaskForm):
     specializations_name = ['All specializations']
     for specialization in specializations:
         specializations_name.append(specialization.specialization_name)
+
     specialization = SelectField(
         'Specialization',
         validators=[DataRequired()],
@@ -26,6 +27,7 @@ class Search(FlaskForm):
     locations_name = ['All locations']
     for location in locations:
         locations_name.append(location.location_name)
+
     location = SelectField(
         'Location',
         validators=[DataRequired()],
