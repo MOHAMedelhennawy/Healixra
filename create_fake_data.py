@@ -26,5 +26,5 @@ with app.app_context():
     location_obj = Location.query.filter_by(location_name=location).first()
     matched_doctors = Doctor.query.filter_by(location_id=location_obj.id).all()
     for doctor in matched_doctors:
-        print(doc)
+        print(doctor)
 print(len(matched_doctors))
