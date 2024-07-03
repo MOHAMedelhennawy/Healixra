@@ -130,6 +130,8 @@
     background-color: #4070f4;
     transition: all 0.5s ease;
     cursor: pointer;
+    width: 15%;
+    line-height: 200%;
     bottom: -4px;
 }
 .search form .button:hover{

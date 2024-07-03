@@ -14,7 +14,7 @@ class Doctor(BaseModel, db.Model):
     first_name = db.Column(db.String(128), nullable=False)
     last_name = db.Column(db.String(128), nullable=False)
     schedule = db.Column(db.Text)
-    image = db.Column(db.BLOB)
+    image = db.Column(db.String(40), nullable=False, default='user.jpg')
     reviews = db.relationship('Review', backref='doctor', cascade='all, delete')
     specialization = db.relationship('Specialization', back_populates='doctors')
     patients = db.relationship('Patient', secondary='doctor_patient', back_populates='doctors')

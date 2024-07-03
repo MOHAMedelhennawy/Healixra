@@ -7,21 +7,74 @@
     align-items: center;
     justify-content: center;
 }
-.result-container{
-    display: flex;
-    justify-content: center;
+.result-containe{
+
 }
 .result-content{
     width: 80%;
-    height: 100vi;
-    display: flex;
-    justify-content: center;
+    margin: auto;
 }
-.doctors{
-    width: 70%;
+.result-content .doctors{
+    display: flex;
+    flex-wrap: wrap;
+}
+.result-content .doctors .result{
+    margin: 10px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+.result-content .doctors .result{
+    width: 16vi;
+    height: fit-content;
+    overflow-x: scroll;
+    margin: 11px 25px;
+    padding: 5px;
+    transition: all 1s ease;
+}
+
+.result-content .doctors .result:hover{
+    scale: 1.03;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
 
 }
-.result-content .filter{
+
+
+.result-content .doctors .result img{
+    width: 15vi;
+    height: 15vi;
+}
+.result-content .doctors .result div i{
+    color: #bdbdbd;
+}
+.result-content .doctors .result .name i{
+    padding-right: 4px;
+}
+.result-content .doctors .result .location i{
+    padding-right: 6px;
+}
+.result-content .doctors .result .specialization i{
+
+}
+.result-content .doctors .result a{
+    /* border-radius: 10px; */
+    color: #4070f4;
+    text-decoration: none;
+    font-size: 17px;
+    font-weight: 500;
+    background-color: white;
+    border: 2px #4070f4 solid;
+    transition: all 0.5s ease;
+    cursor: pointer;
+    bottom: -4px;
+    width: 70%;
     display: flex;
-    flex-direction: row ;
+    justify-content: center;
+    align-items: center;
+    margin: 10px auto;
+}
+
+
+.result-content .doctors .result a:hover{
+    color: white;
+    background-color: #265df2;
+    border-radius: 30px;
 }
