@@ -1,5 +1,6 @@
 import models
 from flask import Flask, render_template, flash, redirect, url_for, request
+from flask_login import login_user, current_user, logout_user, login_required
 from models.registration import Registration
 from models.specialization import Specialization
 from models.login import Login, updateProfile
@@ -9,12 +10,23 @@ from models.search import Search
 from models.doctor import Doctor
 from models.location import Location
 from models.base_model import db
-from flask_login import login_user, current_user, logout_user, login_required
 from __init__ import app, bcrypt
 
 @app.route("/")
 @app.route("/home", methods=['GET', 'POST'])
 def homePage():
+    """
+    Render the home page and handle form submissions for filtering doctors.
+
+    Explanation:
+        - IF the request method is 'GET', The browser send get request to get the html and css files.
+        - IF the request method is 'POST', The user sends filtration data to the server,
+          and the server processes this data to return the appropriate response.
+
+    Returns:
+        - Home page if type of request method is GET,
+        - A redirection to the appropriate search method if the request method is 'POST'.
+    """
     form = Search()
     if request.method == 'POST':
         specialization_input = form.specialization.data
@@ -36,12 +48,17 @@ def homePage():
 
 @app.route('/search')
 def search_all():
+    """
+    Return all doctors
+    """
+
     all_doctors = models.storage.all(Doctor).values()
     lenght = len(all_doctors)
     return render_template('search_results.html', doctors=all_doctors, lenght=lenght)
 
+
 # don't forget remove the space between words in the uri 'South Siani'
-@app.route('/search/<location>')
+@app.route('/search/location/<location>')
 def search_by_location(location):
     """
     Filter doctors by location.
@@ -52,12 +69,11 @@ def search_by_location(location):
     Returns:
         Rendered HTML template displaying all doctors in the specified location.
     """
-    print(location)
     location_odj = Location.query.filter_by(location_name=location).first()
     matched_doctors = Doctor.query.filter_by(location_id=location_odj.id).all()
     return render_template('search_results.html', doctors=matched_doctors)
 
-@app.route('/search/<specialization>')
+@app.route('/search/specialization/<specialization>')
 def search_by_specialization(specialization):
     """
     Filter doctors by specialization
@@ -69,7 +85,6 @@ def search_by_specialization(specialization):
         Rendered HTML template displaying all doctors with specified specialization.
     """
 
-    print(specialization)
     specialization_obj = Specialization.query.filter_by(specialization_name=specialization).first()
     matched_doctors = Doctor.query.filter_by(specialization_id=specialization_obj.id).all()
     return render_template('search_results.html', doctors=matched_doctors)
@@ -177,7 +192,7 @@ def profile():
 
 @app.route('/settings', methods=['GET', 'POST'])
 @login_required
-def settings():
+def settings(): 
     form = updateProfile()
     if form.validate_on_submit():
         current_user.first_name = form.first_name.data

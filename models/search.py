@@ -21,7 +21,6 @@ class Search(FlaskForm):
         validators=[DataRequired()],
         render_kw={'placeholder': 'Specialization'},
         choices=specializations_name
-
     )
 
     locations_name = ['All locations']
