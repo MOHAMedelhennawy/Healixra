@@ -34,5 +34,9 @@ class Search(FlaskForm):
         choices=locations_name
     )
 
-    name = SearchField()
+    name = SearchField(
+        'Doctor Name',
+        render_kw={'placeholder': 'Doctor Name '},
+    )
+    
     submit = SubmitField('Search')

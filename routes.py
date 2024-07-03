@@ -11,6 +11,8 @@ from models.doctor import Doctor
 from models.location import Location
 from models.base_model import db
 from __init__ import app, bcrypt
+from utils import search_doctors
+
 
 @app.route("/")
 @app.route("/home", methods=['GET', 'POST'])
@@ -31,35 +33,45 @@ def homePage():
     if request.method == 'POST':
         specialization_input = form.specialization.data
         location_input = form.location.data
-
+        name_input = form.name.data
 
         if specialization_input == 'All specializations' and location_input == 'All locations':
-            return redirect(url_for('search_all'))
-
+            if name_input:
+                return redirect(url_for('search_all', name=name_input))
+            else:
+                return redirect(url_for('search_all'))
         elif specialization_input == 'All specializations' and location_input != 'All locations':
-            return redirect(url_for('search_by_location', location=location_input))
-
+            if name_input:
+                return redirect(url_for('search_by_location', location=location_input, name=name_input))
+            else:
+                return redirect(url_for('search_by_location', location=location_input))
         elif specialization_input != 'All specializations' and location_input == 'All locations':
-            return redirect(url_for('search_by_specialization', specialization=specialization_input))
-
+            if name_input:
+                return redirect(url_for('search_by_specialization', specialization=specialization_input, name=name_input))
+            else:
+                return redirect(url_for('search_by_specialization', specialization=specialization_input))
         else:
-            return redirect(url_for('search', specialization=specialization_input, location=location_input))
+            if name_input:
+                return redirect(url_for('search', specialization=specialization_input, location=location_input, name=name_input))
+            else:
+                return redirect(url_for('search', specialization=specialization_input, location=location_input))
     return render_template("home.html", search_form=form)
 
-@app.route('/search')
-def search_all():
+@app.route('/search', defaults={'name': None})
+@app.route('/search/<name>')
+def search_all(name):
     """
     Return all doctors
     """
-
-    all_doctors = models.storage.all(Doctor).values()
+    all_doctors = search_doctors(name)
     lenght = len(all_doctors)
     return render_template('search_results.html', doctors=all_doctors, lenght=lenght)
 
 
 # don't forget remove the space between words in the uri 'South Siani'
-@app.route('/search/location/<location>')
-def search_by_location(location):
+@app.route('/search/location/<location>', defaults={'name': None})
+@app.route('/search/location/<location>/<name>')
+def search_by_location(location, name):
     """
     Filter doctors by location.
     
@@ -69,12 +81,31 @@ def search_by_location(location):
     Returns:
         Rendered HTML template displaying all doctors in the specified location.
     """
-    location_odj = Location.query.filter_by(location_name=location).first()
-    matched_doctors = Doctor.query.filter_by(location_id=location_odj.id).all()
-    return render_template('search_results.html', doctors=matched_doctors)
+    if name:
+        name = name.title()
+        first_name, last_name = name.split() if ' ' in name else (name, None)
+    location_obj = Location.query.filter_by(location_name=location).first()
+    if not location_obj:
+        return redirect(url_for('search_all', name=name))
+    if name:
+        if last_name:
+            matched_doctors = Doctor.query.filter(
+                Doctor.location_id == location_obj.id,
+                Doctor.first_name.ilike(f'%{first_name}%'),
+                Doctor.last_name.ilike(f'%{last_name}%')
+            ).all()
+        elif first_name:
+            matched_doctors = Doctor.query.filter(
+                Doctor.location_id == location_obj.id,
+                Doctor.first_name.ilike(f'%{first_name}%')
+            ).all()
+    else:
+        matched_doctors = Doctor.query.filter_by(location_id=location_obj.id).all()
+    return render_template('search_results.html', doctors=matched_doctors, length=len(matched_doctors))
 
-@app.route('/search/specialization/<specialization>')
-def search_by_specialization(specialization):
+@app.route('/search/specialization/<specialization>', defaults={'name': None})
+@app.route('/search/specialization/<specialization>/<name>')
+def search_by_specialization(specialization, name):
     """
     Filter doctors by specialization
 
@@ -84,13 +115,29 @@ def search_by_specialization(specialization):
     Return:
         Rendered HTML template displaying all doctors with specified specialization.
     """
-
+    if name:
+        name = name.title()
+        first_name, last_name = name.split() if ' ' in name else (name, None)
     specialization_obj = Specialization.query.filter_by(specialization_name=specialization).first()
-    matched_doctors = Doctor.query.filter_by(specialization_id=specialization_obj.id).all()
+    if name:
+        if last_name:
+            matched_doctors = Doctor.query.filter(
+                Doctor.specialization_id == specialization_obj.id,
+                Doctor.first_name.ilike(f'%{first_name}%'),
+                Doctor.last_name.ilike(f'%{last_name}%')
+            ).all()
+        elif first_name:
+            matched_doctors = Doctor.query.filter(
+                Doctor.specialization_id == specialization_obj.id,
+                Doctor.first_name.ilike(f'%{first_name}%')
+            ).all()
+    else:
+        matched_doctors = Doctor.query.filter_by(specialization_id=specialization_obj.id).all()
     return render_template('search_results.html', doctors=matched_doctors)
 
-@app.route('/search/<specialization>/<location>', methods=['GET'])
-def search(specialization, location):
+@app.route('/search/<specialization>/<location>', defaults={'name': None})
+@app.route('/search/<specialization>/<location>/<name>')
+def search(specialization, location, name):
     """
     Filter doctors by location and specialization
 
@@ -105,10 +152,27 @@ def search(specialization, location):
 
     specialization_obj = Specialization.query.filter_by(specialization_name=specialization).first()
     location_obj = Location.query.filter_by(location_name=location).first()
-    matched_doctors = Doctor.query.filter(
-        Doctor.location_id == location_obj.id,
-        Doctor.specialization_id == specialization_obj.id
-    ).all()
+    if name:
+        name = name.title()
+        first_name, last_name = name.split() if ' ' in name else (name, None)
+        if last_name:
+            matched_doctors = Doctor.query.filter(
+                Doctor.specialization_id == specialization_obj.id,
+                Doctor.location_id == location_obj.id,
+                Doctor.first_name.ilike(f'%{first_name}%'),
+                Doctor.last_name.ilike(f'%{last_name}%')
+            ).all()
+        elif first_name:
+            matched_doctors = Doctor.query.filter(
+                Doctor.specialization_id == specialization_obj.id,
+                Doctor.location_id == location_obj.id,
+                Doctor.first_name.ilike(f'%{first_name}%')
+            ).all()
+    else:
+        matched_doctors = Doctor.query.filter(
+            Doctor.location_id == location_obj.id,
+            Doctor.specialization_id == specialization_obj.id
+        ).all()
     return render_template('search_results.html', doctors=matched_doctors)
 
 @app.route('/doctor/<int:doctor_id>')

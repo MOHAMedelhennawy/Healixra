@@ -12,7 +12,10 @@
                 <label for="location">Location:</label>
                 {{search_form.location(class_='select')}}
             </div>
-            {{search_form.name(class_="search-bar")}}
+            <div class="search-name">
+                <label for="name">Name:</label>
+                {{search_form.name(class_='search-bar')}}
+            </div>
             {{search_form.submit(class_="button")}}
         </form>
     </div>
