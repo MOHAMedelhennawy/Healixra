@@ -33,7 +33,7 @@ HBNB_MYSQL_USER=Name HBNB_MYSQL_PWD=Password HBNB_MYSQL_HOST=localhost HBNB_MYSQ
 
 """
 name = ' '
-while name != '':
+while name:
     name = input()
     if name is not None:
         location = Location(location_name=name)

@@ -1,33 +1,30 @@
 {% extends "index.html" %}
 {% block content %}
-<div class="background">
-    <h1>Choose Your Doctor</h1>
-</div>
 <div class="result-container">
-
+    <div class="background">
+        <h1>Choose Your Doctor</h1>
+    </div>
     <div class="result-content">
         <div class="doctors">
-            <h1>{{ doctors|length }}</h1>
+            <!-- <h1>{{ doctors|length }}</h1> -->
             {% for doctor in doctors %}
-                Doctor {{ loop.index }}
-                <h3>Name: {{ doctor.first_name }} {{ doctor.last_name }}</h3>
-                <h3>Location: {{ doctor.location.location_name }}</h3>
-                <h3>Specialization: {{ doctor.specialization.specialization_name }}</h3>
-                <h2>=============================================</h2>
-            {% endfor %}
-        </div>
-        <div class="filter">
-            <div class="">
-                <ul>
-                    <li>test1</li>
-                    <li>test1</li>
-                    <li>test1</li>
-                    <li>test1</li>
-                    <li>test1</li>
-                    <li>test1</li>
-                    <li>test1</li>
-                </ul>
+            <div class="result">
+                <img src="/static/doctors_images/{{doctor.image}}" href="">
+                <div class="name">
+                    <i class="fa-solid fa-user-doctor"></i>
+                    <span>{{ doctor.first_name }} {{ doctor.last_name }}</span>
+                </div>
+                <div class="location">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span>{{ doctor.location.location_name }}</span>
+                </div>
+                <div class="specialization">
+                    <i class="fa-solid fa-stethoscope"></i>
+                    <span>{{ doctor.specialization.specialization_name }}</span>
+                </div>
+                <a href="#">Book now</a>
             </div>
+            {% endfor %}
         </div>
     </div>
 </div>

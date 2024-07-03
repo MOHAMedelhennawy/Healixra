@@ -22,15 +22,16 @@ locations_name = [location.id for location in locations]
 # Get all specializations
 specializations = models.storage.all(Specialization).values()
 specializations_name = [specialization.id for specialization in specializations]
-
+images = ['doctor1.jpg', 'doctor2.jpg', 'doctor3.jpg', 'doctor4.jpg', 'doctor5.jpg']
 # Create fake doctors data
-for i in range(500):
+for i in range(1000):
     doctor = Doctor(
         first_name=faker.first_name(),
         last_name=faker.last_name(),
         email=faker.email(),
         location_id=faker.random.choice(locations_name),
         specialization_id=faker.random.choice(specializations_name),
+        image=faker.random.choice(images)
     )
     try:
         doctor.save()

@@ -36,7 +36,7 @@ class Patient(BaseModel, db.Model, UserMixin):
     password = db.Column(db.String(128), nullable=False)
     gender = db.Column(db.String(128))
     phone = db.Column(db.String(15))
-    images = db.Column(db.String(40), nullable=False, default='user.jpg')
+    image = db.Column(db.String(40), nullable=False, default='user.jpg')
 
     reviews = db.relationship('Review', backref='Patient', cascade='all, delete')
     doctors = db.relationship('Doctor', secondary='doctor_patient', back_populates='patients')
