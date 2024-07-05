@@ -1,7 +1,7 @@
 from models.doctor import Doctor
 
 def search_doctors(name, location=None):
-    name = name.title()
+    name = name.title() if name != None else None
     first_name, last_name = name.split() if ' ' in name else (name, None)
     if name and location == None:
         if last_name:

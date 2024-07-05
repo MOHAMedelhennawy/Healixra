@@ -1,6 +1,6 @@
 import models
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField, SearchField
+from wtforms import StringField, PasswordField, SubmitField, TimeField, SelectField, SearchField, DateField
 from wtforms.validators import DataRequired
 from models.specialization import Specialization
 from models.location import Location
@@ -40,3 +40,11 @@ class Search(FlaskForm):
     )
     
     submit = SubmitField('Search')
+
+
+class Search_appointments(FlaskForm):
+    date = DateField()
+    start_time = TimeField()
+    end_time = TimeField()
+
+    submit = SubmitField('Check')

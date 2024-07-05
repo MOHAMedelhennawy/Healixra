@@ -20,13 +20,13 @@ def load_user(id):
     return session.get(Patient, id)
 
 
-doctor_patient = db.Table(
+
+doctor_patient = Table(
     'doctor_patient',
     db.metadata,
-    db.Column('patient_id', db.String(60), db.ForeignKey('patients.id'), primary_key=True, nullable=False),
-    db.Column('doctor_id', db.String(60), db.ForeignKey('doctors.id'), primary_key=True, nullable=False)
-        )
-
+    Column('patient_id', db.String(60), ForeignKey('patients.id'), primary_key=True, nullable=False),
+    Column('doctor_id', db.String(60), ForeignKey('doctors.id'), primary_key=True, nullable=False),
+)
 
 class Patient(BaseModel, db.Model, UserMixin):
     __tablename__ = 'patients'

@@ -22,7 +22,7 @@
                     <i class="fa-solid fa-stethoscope"></i>
                     <span>{{ doctor.specialization.specialization_name }}</span>
                 </div>
-                <a href="#">Book now</a>
+                <a href="{{url_for('doctor_profile', doctor_id=doctor.id)}}">Book now</a>
             </div>
             {% endfor %}
         </div>

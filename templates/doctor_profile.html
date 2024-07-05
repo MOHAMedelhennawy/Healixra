@@ -1,15 +1,58 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doctor Profile</title>
-</head>
-<body>
-    <h1>{{ doctor.name }}</h1>
-    <p>Specialization: {{ doctor.specialization }}</p>
-    <p>Location: {{ doctor.location }}</p>
-    
-    <a href="{{ url_for('home') }}">Back to Search</a>
-</body>
-</html>
+{% extends "index.html"%}
+{% block content %}
+<div class="profile-container">
+    <section class="doctor-info">
+        <img src="/static/doctors_images/{{doctor.image}}" alt="">
+        <div class="info">
+            <div class="text">
+                <div class="name">
+                    <h1>Doc. {{ doctor.first_name }} {{ doctor.last_name }}</h1>
+                </div>
+                <div class="location">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span>{{ doctor.location.location_name }}</span>
+                </div>
+                <div class="specialization">
+                    <i class="fa-solid fa-stethoscope"></i>
+                    <span>{{ doctor.specialization.specialization_name }}</span>
+                </div>
+                <div class="rating-stars">
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="doctor">
+        <div class="div">
+            <section class="doctor-bio">
+                <div class="text">
+                    <div class="title">
+                        <h1>Bio</h1>
+                    </div>
+                    <div class="bio">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit sapiente quod dolorem saepe aliquam, iure ea! Consectetur voluptas eum labore cumque molestiae, nihil amet a accusantium saepe ex voluptate? Eaque.</p>
+                    </div>
+                </div>
+            </section>
+            <section class="reviews">
+                <h1>Reveiws</h1>
+            </section>
+        </div>
+        <div class="booking">
+            <div class="appintments-container">
+                <div class="title">
+                    <div class="background"><h3>Appintments</h3></div>
+                </div>
+                <form class="appointments-filteration" action="" method="POST">
+                    <h4 style="display: inline;">Date:</h4>
+                    {{doctor}}
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

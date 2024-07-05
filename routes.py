@@ -6,7 +6,7 @@ from models.specialization import Specialization
 from models.login import Login, updateProfile
 from models.login import Login
 from models.patient import Patient
-from models.search import Search
+from models.search import Search, Search_appointments
 from models.doctor import Doctor
 from models.location import Location
 from models.base_model import db
@@ -175,12 +175,14 @@ def search(specialization, location, name):
         ).all()
     return render_template('search_results.html', doctors=matched_doctors)
 
-@app.route('/doctor/<int:doctor_id>')
+@app.route('/doctor/<doctor_id>', methods=['GET', 'POST'])
 def doctor_profile(doctor_id):
-    doctors = Doctor.query.filter_by(doctor_id=doctor_id)
-    doctor = next((doc for doc in doctors), None)
+
+    form = Search_appointments()
+    doctor = Doctor.query.filter_by(id=doctor_id).first()
+    schedule = doctor.schedule
     if doctor:
-        return render_template('doctor_profile.html', doctor=doctor)
+        return render_template('doctor_profile.html', doctor=doctor, form=form, schedule=schedule)
     else:
         return "Doctor not found", 404 
 
