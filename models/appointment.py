@@ -11,7 +11,7 @@ class Appointment(BaseModel, db.Model):
     doctor_id = db.Column(db.String(60), db.ForeignKey('doctors.id'), nullable=False)
     appointment_date  = db.Column(db.DateTime(), nullable=False)
     appointment_time  = db.Column(db.Time(), nullable=False)
-    status = db.Column(db.Boolean())
+    # status = db.Column(db.Boolean())
 
     doctor = db.relationship('Doctor', back_populates='appointments')
     patient = db.relationship('Patient', back_populates='appointments')
