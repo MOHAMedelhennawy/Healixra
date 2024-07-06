@@ -43,7 +43,8 @@ class Patient(BaseModel, db.Model, UserMixin):
     doctors = db.relationship('Doctor', secondary='doctor_patient', back_populates='patients')
 
     def get_appointments(self):
-        list = []
+        appointments_time = {}
         for appointment in self.appointments:
-            list.append(appointment)
-        return list
+            appointments_time[appointment.appointment_date] = appointment.appointment_time
+        return appointments_time
+    

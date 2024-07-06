@@ -24,7 +24,7 @@ specializations = models.storage.all(Specialization).values()
 specializations_name = [specialization.id for specialization in specializations]
 images = ['doctor1.jpg', 'doctor2.jpg', 'doctor3.jpg', 'doctor4.jpg', 'doctor5.jpg']
 # Create fake doctors data
-for i in range(1000):
+for i in range(100):
     doctor = Doctor(
         first_name=faker.first_name(),
         last_name=faker.last_name(),

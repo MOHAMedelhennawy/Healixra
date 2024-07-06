@@ -7,7 +7,7 @@ from sqlalchemy.orm import relationship
 from models.base_model import db
 from sqlalchemy.ext.mutable import MutableDict
 from sqlalchemy.dialects.postgresql import JSON
-
+from datetime import datetime, timedelta
 
 class Doctor(BaseModel, db.Model):
     __tablename__ = 'doctors'
@@ -46,3 +46,39 @@ class Doctor(BaseModel, db.Model):
             if not self.schedule[day]:
                 del self.schedule[day]
             self.schedule = self.schedule  # Trigger change tracking
+
+    def get_appointments(self):
+        appointments_time = {}
+        for appointment in self.appointments:
+            appointments_time[appointment.appointment_date] = appointment.appointment_time
+        return appointments_time
+
+    def generate_time_slots(self, start_time_str, end_time_str, interval_minutes=15):
+        """Generate time slots between start and end times with a given interval."""
+        start_time = datetime.strptime(start_time_str, '%H:%M')
+        end_time = datetime.strptime(end_time_str, '%H:%M')
+
+        slots = []
+        current_time = start_time
+        while current_time < end_time:
+            next_time = current_time + timedelta(minutes=interval_minutes)
+            slot_time = current_time.time()
+            is_free = True
+            for date, time in self.get_appointments().items():
+                if slot_time == time:
+                    is_free = False
+                    break
+            if is_free:
+                slots.append(current_time.strftime('%H:%M'))
+            current_time = next_time
+        return slots
+
+    def get_valid_appointments(self, day):
+        i = 1
+        slots_dict = {}
+        times = self.schedule[day]
+        for time in times:
+            slots = self.generate_time_slots(time['start'], time['end'])
+            slots_dict[i] = slots
+            i += 1
+        return slots_dict
