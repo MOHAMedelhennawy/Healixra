@@ -18,6 +18,7 @@ class Doctor(BaseModel, db.Model):
     schedule = db.Column(MutableDict.as_mutable(JSON), default={})
     image = db.Column(db.String(40), nullable=False, default='user.jpg')
 
+    appointments = db.relationship('Appointment', back_populates='doctor')
     reviews = db.relationship('Review', backref='doctor', cascade='all, delete')
     specialization = db.relationship('Specialization', back_populates='doctors')
     patients = db.relationship('Patient', secondary='doctor_patient', back_populates='doctors')

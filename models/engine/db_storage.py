@@ -8,17 +8,15 @@ from models.patient import Patient
 from models.specialization import Specialization
 from models.doctor import Doctor
 from models.location import Location
-from models.base_model import BaseModel
 from models.review import Review
 from os import getenv
-import sqlalchemy
 from sqlalchemy import create_engine
-from sqlalchemy.orm import scoped_session, sessionmaker
+from models.appointment import Appointment
 
 classes = {
     "Patient": Patient, 'Doctor': Doctor,
     'Specialization': Specialization, 'Location': Location,
-    'Review': Review}
+    'Review': Review, 'Appointment': Appointment}
 
 
 

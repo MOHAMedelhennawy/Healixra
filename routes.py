@@ -3,6 +3,7 @@ from flask import Flask, render_template, flash, redirect, url_for, request
 from flask_login import login_user, current_user, logout_user, login_required
 from models.registration import Registration
 from models.specialization import Specialization
+from models.appointment import Appointment
 from models.login import Login, updateProfile
 from models.login import Login
 from models.patient import Patient

@@ -429,5 +429,41 @@
     "updated_at": "2024-07-02T13:06:10.100318",
     "id": "a5ffdf85-862a-4337-aea9-4bc4aa371d77",
     "__class__": "Specialization"
+  },
+  "Doctor.33ffa249-9fe2-4141-8821-c80772538f88": {
+    "id": "33ffa249-9fe2-4141-8821-c80772538f88",
+    "created_at": "2024-07-06T09:45:14.459214",
+    "updated_at": "2024-07-06T12:45:14.459244",
+    "__class__": "Doctor"
+  },
+  "Doctor.d98deb32-9b25-4114-9846-87017ad907e6": {
+    "id": "d98deb32-9b25-4114-9846-87017ad907e6",
+    "created_at": "2024-07-06T09:54:55.942471",
+    "updated_at": "2024-07-06T12:54:55.942499",
+    "__class__": "Doctor"
+  },
+  "Doctor.66aaecc8-11e0-4a38-bbf4-4c76341311f5": {
+    "id": "66aaecc8-11e0-4a38-bbf4-4c76341311f5",
+    "created_at": "2024-07-06T09:55:14.934095",
+    "updated_at": "2024-07-06T12:55:14.934114",
+    "__class__": "Doctor"
+  },
+  "Appointment.bb38e0f6-62c8-4f5a-b325-8ad4e186f15e": {
+    "id": "bb38e0f6-62c8-4f5a-b325-8ad4e186f15e",
+    "created_at": "2024-07-06T09:55:33.350527",
+    "updated_at": "2024-07-06T12:55:33.350562",
+    "__class__": "Appointment"
+  },
+  "Appointment.e4191786-d404-4591-a9e2-1ea5d5c39afd": {
+    "id": "e4191786-d404-4591-a9e2-1ea5d5c39afd",
+    "created_at": "2024-07-06T09:59:28.428461",
+    "updated_at": "2024-07-06T12:59:28.428489",
+    "__class__": "Appointment"
+  },
+  "Appointment.1ca1efc4-69b0-47e7-aef9-953cfccc6b96": {
+    "id": "1ca1efc4-69b0-47e7-aef9-953cfccc6b96",
+    "created_at": "2024-07-06T10:00:24.507954",
+    "updated_at": "2024-07-06T13:00:24.507972",
+    "__class__": "Appointment"
   }
 }

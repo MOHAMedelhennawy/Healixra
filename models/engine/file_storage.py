@@ -9,13 +9,14 @@ from models.patient import Patient
 from models.location import Location
 from models.base_model import BaseModel
 from models.specialization import Specialization
+from models.appointment import Appointment
 from models.location import Location
 from models.review import Review
 
 classes = {"Patient": Patient, "BaseModel": BaseModel,
            'Doctor': Doctor, 'Location': Location,
            'Specialization': Specialization,
-           'Review': Review,}
+           'Review': Review, 'Appointment': Appointment}
 
 
 class FileStorage:

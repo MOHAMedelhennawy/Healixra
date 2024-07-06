@@ -38,5 +38,12 @@ class Patient(BaseModel, db.Model, UserMixin):
     phone = db.Column(db.String(15))
     image = db.Column(db.String(40), nullable=False, default='user.jpg')
 
+    appointments = db.relationship('Appointment', back_populates='patient')
     reviews = db.relationship('Review', backref='Patient', cascade='all, delete')
     doctors = db.relationship('Doctor', secondary='doctor_patient', back_populates='patients')
+
+    def get_appointments(self):
+        list = []
+        for appointment in self.appointments:
+            list.append(appointment)
+        return list
