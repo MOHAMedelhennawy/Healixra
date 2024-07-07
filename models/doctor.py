@@ -53,7 +53,7 @@ class Doctor(BaseModel, db.Model):
             appointments_time[appointment.appointment_date] = appointment.appointment_time
         return appointments_time
 
-    def generate_time_slots(self, start_time_str, end_time_str, interval_minutes=15):
+    def generate_time_slots(self, start_time_str, end_time_str, day, interval_minutes=15):
         """Generate time slots between start and end times with a given interval."""
         start_time = datetime.strptime(start_time_str, '%H:%M')
         end_time = datetime.strptime(end_time_str, '%H:%M')
@@ -65,7 +65,8 @@ class Doctor(BaseModel, db.Model):
             slot_time = current_time.time()
             is_free = True
             for date, time in self.get_appointments().items():
-                if slot_time == time:
+                appoin_day = date.strftime('%A')
+                if slot_time == time and appoin_day == day:
                     is_free = False
                     break
             if is_free:
@@ -78,7 +79,7 @@ class Doctor(BaseModel, db.Model):
         slots_dict = {}
         times = self.schedule[day]
         for time in times:
-            slots = self.generate_time_slots(time['start'], time['end'])
+            slots = self.generate_time_slots(time['start'], time['end'], day)
             slots_dict[i] = slots
             i += 1
         return slots_dict
