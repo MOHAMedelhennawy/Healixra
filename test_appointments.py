@@ -27,6 +27,7 @@ with app.app_context():
     doctor.set_schedule(schedule)
     db.session.add(doctor)
     db.session.commit()
+
     print(doctor)
     patient = Patient(
         first_name=fake.first_name(),
@@ -36,6 +37,7 @@ with app.app_context():
     )
     db.session.add(patient)
     db.session.commit()
+
     appointment = Appointment(
         patient_id = patient.id,
         doctor_id = doctor.id,

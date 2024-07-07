@@ -1,5 +1,5 @@
 import models
-from flask import Flask, render_template, flash, redirect, url_for, request
+from flask import Flask, render_template, flash, redirect, url_for, request, jsonify
 from flask_login import login_user, current_user, logout_user, login_required
 from models.registration import Registration
 from models.specialization import Specialization
@@ -11,6 +11,7 @@ from models.search import Search, Search_appointments
 from models.doctor import Doctor
 from models.location import Location
 from models.base_model import db
+from datetime import datetime
 from __init__ import app, bcrypt
 from utils import search_doctors
 
@@ -176,16 +177,49 @@ def search(specialization, location, name):
         ).all()
     return render_template('search_results.html', doctors=matched_doctors)
 
-@app.route('/doctor/<doctor_id>', methods=['GET', 'POST'])
-def doctor_profile(doctor_id):
+from flask import render_template, jsonify, request, redirect, url_for
+from datetime import datetime, timedelta
 
-    form = Search_appointments()
+@app.route('/doctor/<doctor_id>', methods=['GET'])
+def doctor_profile(doctor_id):
     doctor = Doctor.query.filter_by(id=doctor_id).first()
-    schedule = doctor.schedule
     if doctor:
-        return render_template('doctor_profile.html', doctor=doctor, form=form, schedule=schedule)
+        # Calculate the next 7 days
+        today = datetime.today().date()
+        next_7_days = [(today + timedelta(days=i)).strftime('%Y-%m-%d') for i in range(7)]
+        return render_template('doctor_profile.html', doctor=doctor, next_7_days=next_7_days)
     else:
-        return "Doctor not found", 404 
+        return "Doctor not found", 404
+
+@app.route('/doctor/<doctor_id>/appointments/<date>', methods=['GET'])
+def get_appointments(doctor_id, date):
+    doctor = Doctor.query.filter_by(id=doctor_id).first()
+    if doctor:
+        valid_appointments = doctor.get_valid_appointments(date)
+        return jsonify({'valid_appointments': valid_appointments.get(date, [])})
+    else:
+        return jsonify({'error': 'Doctor not found'}), 404
+
+@app.route('/doctor/<doctor_id>/book', methods=['POST'])
+@login_required
+def book_appointment(doctor_id):
+    doctor = Doctor.query.filter_by(id=doctor_id).first()
+    if doctor:
+        selected_date = request.form.get('selected_date')
+        appointment_time = request.form.get('appointment_time')
+        if selected_date and appointment_time:
+            # Create and store the appointment (assuming you have an Appointment model)
+            appointment_datetime = datetime.strptime(f"{selected_date} {appointment_time}", '%Y-%m-%d %H:%M')
+            new_appointment = Appointment(patient_id=current_user.id ,doctor_id=doctor.id, appointment_date=appointment_datetime.date(), appointment_time=appointment_datetime.time())
+            db.session.add(new_appointment)
+            db.session.commit()
+            return redirect(url_for('homePage'))
+        else:
+            return "Invalid data", 400
+    else:
+        return "Doctor not found", 404
+
+
 
 @app.route("/about")
 def aboutPage():

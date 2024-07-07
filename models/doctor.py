@@ -8,6 +8,7 @@ from models.base_model import db
 from sqlalchemy.ext.mutable import MutableDict
 from sqlalchemy.dialects.postgresql import JSON
 from datetime import datetime, timedelta
+from models.appointment import Appointment
 
 class Doctor(BaseModel, db.Model):
     __tablename__ = 'doctors'
@@ -47,39 +48,55 @@ class Doctor(BaseModel, db.Model):
                 del self.schedule[day]
             self.schedule = self.schedule  # Trigger change tracking
 
-    def get_appointments(self):
-        appointments_time = {}
-        for appointment in self.appointments:
-            appointments_time[appointment.appointment_date] = appointment.appointment_time
-        return appointments_time
+    def get_appointments(self, date):
+        """
+        Get all appointments based on doctor and date
+        
+        Keyword arguments:
+        date -- Date to booking with format 'year:month:day'
+        Return: filtration appointments
+        """
+        times = []
+        if date.strftime('%A') in self.schedule.keys():
+            for appointment in self.appointments:
+                if appointment.appointment_date == date:
+                    times.append(appointment.appointment_time.strftime('%H:%M'))
+            return times
+        else:
+            print('invalid day')
+            return [], date
 
-    def generate_time_slots(self, start_time_str, end_time_str, day, interval_minutes=15):
-        """Generate time slots between start and end times with a given interval."""
-        start_time = datetime.strptime(start_time_str, '%H:%M')
-        end_time = datetime.strptime(end_time_str, '%H:%M')
-
+    def get_valid_appointments(self, date):
+        """
+        Get all valid appointments on a date.
+        
+        Keyword arguments:
+        date -- Date for booking with format 'year:month:day'
+        Return: valid appointments on that day
+        """
         slots = []
-        current_time = start_time
-        while current_time < end_time:
-            next_time = current_time + timedelta(minutes=interval_minutes)
-            slot_time = current_time.time()
-            is_free = True
-            for date, time in self.get_appointments().items():
-                appoin_day = date.strftime('%A')
-                if slot_time == time and appoin_day == day:
-                    is_free = False
-                    break
-            if is_free:
-                slots.append(current_time.strftime('%H:%M'))
-            current_time = next_time
-        return slots
+        date_object = datetime.strptime(date, '%Y-%m-%d').date()
+        if date_object.strftime('%A') in self.schedule.keys():
+            schedule = self.schedule[date_object.strftime('%A')]
+            for day in schedule:
+                start = day['start']
+                end = day['end']
+                slots.extend(self.generate_time_slots(start, end, date_object))
+        return {date: slots}
 
-    def get_valid_appointments(self, day):
-        i = 1
-        slots_dict = {}
-        times = self.schedule[day]
-        for time in times:
-            slots = self.generate_time_slots(time['start'], time['end'], day)
-            slots_dict[i] = slots
-            i += 1
-        return slots_dict
+
+    def generate_time_slots(self, start_time_str, end_time_str, date, interval_minutes=15):
+        """Generate time slots between start and end times with a given interval."""
+        start_time = datetime.strptime(start_time_str, '%H:%M').time()
+        end_time = datetime.strptime(end_time_str, '%H:%M').time()
+        
+        slots = []
+        current_time = datetime.combine(date, start_time)
+        end_time = datetime.combine(date, end_time)
+        invalid_appointments = self.get_appointments(date)
+        while current_time < end_time:
+            if current_time.time().strftime('%H:%M') not in invalid_appointments:
+                slots.append(current_time.time().strftime('%H:%M'))
+            current_time += timedelta(minutes=interval_minutes)
+        
+        return slots

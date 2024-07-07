@@ -124,4 +124,14 @@
 }
 .checked {
     color: #4070f4;
-} 
+}
+
+.available-days{
+    display: flex;
+    gap: 15px;
+    margin: 10px;
+}
+
+.available-days .day{
+    background-color: #4070f4;
+}

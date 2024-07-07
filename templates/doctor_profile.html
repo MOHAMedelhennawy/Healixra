@@ -1,8 +1,8 @@
-{% extends "index.html"%}
+{% extends "index.html" %}
 {% block content %}
 <div class="profile-container">
     <section class="doctor-info">
-        <img src="/static/doctors_images/{{doctor.image}}" alt="">
+        <img src="/static/doctors_images/{{ doctor.image }}" alt="">
         <div class="info">
             <div class="text">
                 <div class="name">
@@ -39,20 +39,70 @@
                 </div>
             </section>
             <section class="reviews">
-                <h1>Reveiws</h1>
+                <h1>Reviews</h1>
             </section>
         </div>
         <div class="booking">
-            <div class="appintments-container">
+            <div class="appointments-container">
                 <div class="title">
-                    <div class="background"><h3>Appintments</h3></div>
+                    <div class="background"><h3>Appointments</h3></div>
                 </div>
-                <form class="appointments-filteration" action="" method="POST">
-                    <h4 style="display: inline;">Date:</h4>
-                    {{doctor}}
-                </form>
+                <div class="schedule">
+                    <h4>Available Days:</h4>
+                    <select id="day-selector">
+                        {% for day in next_7_days %}
+                            <option value="{{ day }}">
+                                {% if loop.index0 == 0 %}
+                                    Today
+                                {% else %}
+                                    {{ day }}
+                                {% endif %}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div id="appointments">
+                    <h4>Available Appointments:</h4>
+                    <form id="appointment-form" action="/doctor/{{ doctor.id }}/book" method="POST">
+                        <select id="appointment-time" name="appointment_time">
+                            <option value="" disabled selected>Select a time</option>
+                        </select>
+                        <input type="hidden" id="selected-date" name="selected_date">
+                        <button type="submit">Book Appointment</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const doctorId = "{{ doctor.id }}";
+    const daySelector = document.getElementById('day-selector');
+    const appointmentTime = document.getElementById('appointment-time');
+    const selectedDate = document.getElementById('selected-date');
+    const appointmentList = document.getElementById('appointment-list');
+
+    daySelector.addEventListener('change', function() {
+        const selectedDay = daySelector.value;
+        selectedDate.value = selectedDay;
+        fetch(`/doctor/${doctorId}/appointments/${selectedDay}`)
+            .then(response => response.json())
+            .then(data => {
+                appointmentTime.innerHTML = '<option value="" disabled selected>Select a time</option>';
+                if (data.valid_appointments.length > 0) {
+                    data.valid_appointments.forEach(time => {
+                        const option = document.createElement('option');
+                        option.value = time;
+                        option.textContent = time;
+                        appointmentTime.appendChild(option);
+                    });
+                } else {
+                    appointmentTime.innerHTML = '<option value="" disabled selected>No available appointments</option>';
+                }
+            });
+    });
+});
+</script>
 {% endblock content %}

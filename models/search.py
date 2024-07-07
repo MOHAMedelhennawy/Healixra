@@ -43,8 +43,8 @@ class Search(FlaskForm):
 
 
 class Search_appointments(FlaskForm):
-    date = DateField()
+    
+    date = SelectField()
     start_time = TimeField()
-    end_time = TimeField()
 
     submit = SubmitField('Check')
