@@ -465,5 +465,15 @@
     "created_at": "2024-07-06T10:00:24.507954",
     "updated_at": "2024-07-06T13:00:24.507972",
     "__class__": "Appointment"
-  }
-}
+  },
+  "Patient.9cba5a5a-8026-40a2-a535-3446ef8a71f4": {
+    "first_name": "Jessica",
+    "last_name": "Frye",
+    "email": "marissacosta@example.com",
+    "phone": "(964)752-9192x1213",
+    "password": "8f*8CJxZkI",
+    "created_at": "2024-07-08T12:38:22.771118",
+    "updated_at": "2024-07-08T15:38:22.771156",
+    "id": "9cba5a5a-8026-40a2-a535-3446ef8a71f4",
+    "doctors": [
+      

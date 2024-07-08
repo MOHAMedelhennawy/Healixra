@@ -4,6 +4,8 @@
 from models.base_model import BaseModel 
 from sqlalchemy import Column, String, Integer, Text, ForeignKey
 from models.base_model import db
+from flask_wtf import FlaskForm
+from wtforms import TextAreaField, SubmitField
 
 class Review(BaseModel, db.Model):
     __tablename__ = 'reviews'
@@ -11,3 +13,11 @@ class Review(BaseModel, db.Model):
     doctor_id = db.Column(db.String(60), db.ForeignKey('doctors.id'), nullable=False)
     review_text = db.Column(db.Text)
     rating = db.Column(db.Integer)
+
+
+class Add_review(FlaskForm):
+    text = TextAreaField(
+        'review'
+    )
+
+    submit = SubmitField('submit')

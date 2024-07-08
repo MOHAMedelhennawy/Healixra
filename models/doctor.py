@@ -84,7 +84,6 @@ class Doctor(BaseModel, db.Model):
                 slots.extend(self.generate_time_slots(start, end, date_object))
         return {date: slots}
 
-
     def generate_time_slots(self, start_time_str, end_time_str, date, interval_minutes=15):
         """Generate time slots between start and end times with a given interval."""
         start_time = datetime.strptime(start_time_str, '%H:%M').time()

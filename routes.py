@@ -7,7 +7,8 @@ from models.appointment import Appointment
 from models.login import Login, updateProfile
 from models.login import Login
 from models.patient import Patient
-from models.search import Search, Search_appointments
+from models.search import Search
+from models.review import Review, Add_review
 from models.doctor import Doctor
 from models.location import Location
 from models.base_model import db
@@ -182,14 +183,33 @@ from datetime import datetime, timedelta
 
 @app.route('/doctor/<doctor_id>', methods=['GET'])
 def doctor_profile(doctor_id):
+    form = Add_review()
     doctor = Doctor.query.filter_by(id=doctor_id).first()
+    reviews = Review.query.filter_by(doctor_id=doctor.id).join(Patient).order_by(Review.updated_at.desc()).all()
+        
     if doctor:
         # Calculate the next 7 days
         today = datetime.today().date()
         next_7_days = [(today + timedelta(days=i)).strftime('%Y-%m-%d') for i in range(7)]
-        return render_template('doctor_profile.html', doctor=doctor, next_7_days=next_7_days)
+        return render_template('doctor_profile.html', doctor=doctor, next_7_days=next_7_days, reviews=reviews, form=form)
     else:
         return "Doctor not found", 404
+
+
+@app.route('/doctor/<doctor_id>/add_review', methods=['POST'])
+def add_review(doctor_id):
+    form = Add_review()
+    if form.validate_on_submit() and form.text.data:  # Ensure the form is validated before processing
+        review = Review(
+            patient_id=current_user.id,
+            doctor_id=doctor_id,
+            review_text=form.text.data,
+            rating=3  # You can set the rating dynamically if needed
+        )
+        db.session.add(review)
+        db.session.commit()
+        return redirect(url_for('doctor_profile', doctor_id=doctor_id))
+    return redirect(url_for('doctor_profile', doctor_id=doctor_id))
 
 @app.route('/doctor/<doctor_id>/appointments/<date>', methods=['GET'])
 def get_appointments(doctor_id, date):
@@ -218,8 +238,6 @@ def book_appointment(doctor_id):
             return "Invalid data", 400
     else:
         return "Doctor not found", 404
-
-
 
 @app.route("/about")
 def aboutPage():
@@ -287,7 +305,7 @@ def logout():
 @app.route('/profile')
 @login_required
 def profile():    
-    image_filename = current_user.images.decode() if isinstance(current_user.images, bytes) else current_user.images
+    image_filename = current_user.images.decode() if isinstance(current_user.image, bytes) else current_user.image
     image_file = url_for('static', filename=f'user_images/{image_filename}') if image_filename else None
     return render_template("profile.html", title='Profile', image_file=image_file)
 

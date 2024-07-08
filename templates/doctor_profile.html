@@ -39,7 +39,52 @@
                 </div>
             </section>
             <section class="reviews">
-                <h1>Reviews</h1>
+                <div class="title">
+                    <h1>Reviews</h1>
+                </div>
+                {% for review in reviews %}
+                <div class="user">
+                    <div class="user-name">
+                        <div class="user-img">
+                            <img src="/static/doctors_images/doctor1.jpg" alt="">
+                        </div>
+                        <strong>{{ review.Patient.first_name }} {{ review.Patient.last_name }}</strong>
+                    </div>
+                    <div class="user-rating">
+                        {% for star in range(review.rating) %}
+                            <span class="fa fa-star checked"></span>
+                        {% endfor %}
+                        {% for star in range(5 - review.rating) %}
+                            <span class="fa fa-star"></span>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="user-review">
+                    <div class="text">
+                        {{ review.review_text }}
+                    </div>
+                </div>
+                {% endfor %}
+                <div class="add-review">
+                    <form action="{{ url_for('add_review', doctor_id=doctor.id) }}" method="POST">
+                        {{ form.hidden_tag() }}
+                        {{ form.text(class_='comment') }}
+                        <div class="submit_rating">
+                            <div class="submit">
+                                {{ form.submit(class_='submit-btn') }}
+                            </div>
+                            <div class="rating">
+                                <ul class="rate-area">
+                                    <input type="radio" id="5-star" name="rating" value="5" /><label for="5-star" title="Amazing">5 stars</label>
+                                    <input type="radio" id="4-star" name="rating" value="4" /><label for="4-star" title="Good">4 stars</label>
+                                    <input type="radio" id="3-star" name="rating" value="3" /><label for="3-star" title="Average">3 stars</label>
+                                    <input type="radio" id="2-star" name="rating" value="2" /><label for="2-star" title="Not Good">2 stars</label>
+                                    <input type="radio" id="1-star" name="rating" value="1" /><label for="1-star" title="Bad">1 star</label>
+                                </ul>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </section>
         </div>
         <div class="booking">

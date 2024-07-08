@@ -103,12 +103,12 @@
 }
 
 .rate-area > input:checked ~ label {
-	color: gold;
+	color: #4070f4;
 }
 
 .rate-area:not(:checked) > label:hover,
 .rate-area:not(:checked) > label:hover ~ label {
-	color: gold;
+	color: #4070f4;
 }
 
 .rate-area > input:checked + label:hover,
@@ -116,7 +116,7 @@
 .rate-area > input:checked ~ label:hover,
 .rate-area > input:checked ~ label:hover ~ label,
 .rate-area > label:hover ~ input:checked ~ label {
-	color: gold;
+	color: #4070f4;
 }
 
 .fa-star{
@@ -134,4 +134,70 @@
 
 .available-days .day{
     background-color: #4070f4;
+}
+
+.reviews{
+    display: flex;
+    flex-direction:column;
+}
+
+.reviews .title{
+    margin-bottom: 53px;
+    background-color: #4070f4;
+    color: white;
+}
+.reviews .title h1{
+    margin-left: 5px;
+}
+.reviews .user-review{
+    border-bottom: #4070f4 1px solid;
+    padding: 10px;
+    margin: 10px;
+}
+
+.reviews .user{
+    display: flex;
+    justify-content: space-between;
+}
+.reviews .user .user-name{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.reviews .user .user-name .user-img img{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
+
+.add-review{
+    margin-bottom: 100px;
+    max-width: 100%;
+}
+
+.add-review .comment{
+    width: 100%;
+}
+
+.add-review .submit_rating .submit .submit-btn{
+    background-color: #4070f4;
+    color: white;
+    width: 100px;
+    height: 40px;
+    margin-top: 4px;
+    border-radius: 20px;
+    transition: all 1s ease;
+    cursor: pointer;
+}
+
+.submit_rating{
+    display: flex;
+    justify-content: space-between;
+}
+
+.add-review .submit_rating .submit .submit-btn:hover{
+    width: 90px;
+    background-color: #002fba;
+
 }

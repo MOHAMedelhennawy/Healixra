@@ -40,11 +40,3 @@ class Search(FlaskForm):
     )
     
     submit = SubmitField('Search')
-
-
-class Search_appointments(FlaskForm):
-    
-    date = SelectField()
-    start_time = TimeField()
-
-    submit = SubmitField('Check')
