@@ -1,78 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Healixra</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='main.css')}}">    
-    <link rel="stylesheet" href="{{ url_for('static', filename='home.css')}}">    
-    <link rel="stylesheet" href="{{ url_for('static', filename='profile.css')}}"> 
-    <link rel="stylesheet" href="{{ url_for('static', filename='settings.css')}}"> 
-    <link rel="stylesheet" href="{{ url_for('static', filename='result.css')}}"> 
-    <link rel="stylesheet" href="{{ url_for('static', filename='forms.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='doctor_profile.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='result-container.css') }}">
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-</head>
-<body>
-    <div class="container base">
-        <nav>
-            <a href="{{ url_for('homePage') }}" class="logo">Healixra</a>
-            <ul>
-                <li><a href="{{ url_for('homePage') }}">Home</a></li>
-                <li><a href="{{ url_for('doctorsPage') }}">Doctors</a></li>
-            {% if current_user.is_authenticated %}
-            <li class="dropdown">
-                <a class="account-icon" onclick="showDropdown()"><span>{{current_user.first_name[0]}}</span></a>
-                <div id="myDropdown" class="dropdown-contents">
-                    <div class="db-content icon">
-                        <i class="fa-regular fa-circle-user"></i>
-                        <a href="{{ url_for('profile') }}">{{current_user.first_name[0:10]}} {{current_user.last_name[0:6]}}</a>
-                    </div>
-                    <div class="db-content icon">
-                        <i class="fa-solid fa-gear"></i>
-                        <a href="{{ url_for('settings') }}">Settings</a>
-                    </div>
-                    <div class="db-content logout">
-                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                        <a href="{{ url_for('logout') }}">Logout</a>
-                    </div>
-                </div>
-            </li>
-            {% else %}
-                <li><a href="{{ url_for('register') }}">Sign Up</a></li>
-                <li><a href="{{ url_for('login') }}">Login</a></li>
-            {% endif %}
-            </ul>
-        </nav>
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                {% for category, message in messages %}
-                    {% if category == 'success'%}
-                        <div class="flash">
-                            <span>{{message}}</span>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Healixra</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='main.css')}}">    
+        <link rel="stylesheet" href="{{ url_for('static', filename='home.css')}}">    
+        <link rel="stylesheet" href="{{ url_for('static', filename='profile.css')}}"> 
+        <link rel="stylesheet" href="{{ url_for('static', filename='settings.css')}}"> 
+        <link rel="stylesheet" href="{{ url_for('static', filename='result.css')}}"> 
+        <link rel="stylesheet" href="{{ url_for('static', filename='forms.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='doctor_profile.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='result-container.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='owl.carousel.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='owl.theme.default.min.css') }}">
+        <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    </head>
+    <body>
+        <div class="container base">
+            <nav>
+                <a href="{{ url_for('homePage') }}" class="logo">Healixra</a>
+                <ul>
+                    <li><a href="{{ url_for('homePage') }}">Home</a></li>
+                    <li><a href="{{ url_for('doctorsPage') }}">Doctors</a></li>
+                {% if current_user.is_authenticated %}
+                <li class="dropdown">
+                    <a class="account-icon" onclick="showDropdown()"><span>{{current_user.first_name[0]}}</span></a>
+                    <div id="myDropdown" class="dropdown-contents">
+                        <div class="db-content icon">
+                            <i class="fa-regular fa-circle-user"></i>
+                            <a href="{{ url_for('profile') }}">{{current_user.first_name[0:10]}} {{current_user.last_name[0:6]}}</a>
                         </div>
-                        <!-- <div class="popup">
-                            <img src="/static/icons/check.png" alt="">
-                        </div>   -->
-                    {% else %}
-                        <div class="flash damage">
-                            <span>{{message}}</span>
+                        <div class="db-content icon">
+                            <i class="fa-solid fa-gear"></i>
+                            <a href="{{ url_for('settings') }}">Settings</a>
                         </div>
-                    {% endif %}
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
-        <!-- <div class="flash">
-            
-            <span>Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
-        </div> -->
-        {% block content %}
-        {% endblock content %}
-    <!-- <footer class="footer">
-        <svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#0099ff" fill-opacity="1" d="M0,192L48,197.3C96,203,192,213,288,224C384,235,480,245,576,240C672,235,768,213,864,170.7C960,128,1056,64,1152,48C1248,32,1344,64,1392,80L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
-    </footer> -->
-<script src="{{ url_for('static', filename='js/popup.js') }}"></script>
-</body>
-</html>
+                        <div class="db-content logout">
+                            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                            <a href="{{ url_for('logout') }}">Logout</a>
+                        </div>
+                    </div>
+                </li>
+                {% else %}
+                    <li><a href="{{ url_for('register') }}">Sign Up</a></li>
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                {% endif %}
+                </ul>
+            </nav>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        {% if category == 'success'%}
+                            <div class="flash">
+                                <span>{{message}}</span>
+                            </div>
+                            <!-- <div class="popup">
+                                <img src="/static/icons/check.png" alt="">
+                            </div>   -->
+                        {% else %}
+                            <div class="flash damage">
+                                <span>{{message}}</span>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <!-- <div class="flash">
+                
+                <span>Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
+            </div> -->
+            {% block content %}
+            {% endblock content %}
+        <!-- <footer class="footer">
+            <svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#0099ff" fill-opacity="1" d="M0,192L48,197.3C96,203,192,213,288,224C384,235,480,245,576,240C672,235,768,213,864,170.7C960,128,1056,64,1152,48C1248,32,1344,64,1392,80L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
+        </footer> -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="{{ url_for('static', filename='js/owl.carousel.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/popup.js') }}"></script>
+        <script>
+            $(document).ready(function(){
+                $(".owl-carousel").owlCarousel({
+                    items: 3,
+                    loop: true,
+                    margin: 10,
+                    nav: true,
+                    autoplay: true,
+                    autoplayTimeout: 3000,
+                    autoplayHoverPause: true
+                });
+            });
+        </script>
+    </body>
+</html> 

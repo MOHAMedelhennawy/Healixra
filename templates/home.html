@@ -34,7 +34,24 @@
         </div>
 
     </div>
-
+    <h1>Most pupolar</h1>
+        <div class="top-rating-doctors owl-carousel">
+            {% for doctor in doctors %}
+                <div class="doctor">
+                    <div class="image">
+                        <img src="/static/doctors_images/{{doctor.image}}" href="">
+                    </div>
+                    <div class="text">
+                        <div class="name">
+                            <strong>{{doctor.first_name}} {{doctor.last_name}}</strong>
+                        </div>
+                        <div class="bio">
+                            <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. In ipsum iste magnam, et accusantium rerum ad, dolor nemo voluptatem voluptate, hic obcaecati consequatur cupiditate eligendi? Magnam enim maxime pariatur quaerat?</span>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
     <div class="top-specialists">
         <div class="specialists-container">
             <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#3463ef" fill-opacity="1" d="M0,128L14.1,133.3C28.2,139,56,149,85,170.7C112.9,192,141,224,169,240C197.6,256,226,256,254,245.3C282.4,235,311,213,339,197.3C367.1,181,395,171,424,160C451.8,149,480,139,508,122.7C536.5,107,565,85,593,90.7C621.2,96,649,128,678,138.7C705.9,149,734,139,762,138.7C790.6,139,819,149,847,160C875.3,171,904,181,932,192C960,203,988,213,1016,202.7C1044.7,192,1073,160,1101,144C1129.4,128,1158,128,1186,117.3C1214.1,107,1242,85,1271,90.7C1298.8,96,1327,128,1355,144C1383.5,160,1412,160,1426,160L1440,160L1440,320L1425.9,320C1411.8,320,1384,320,1355,320C1327.1,320,1299,320,1271,320C1242.4,320,1214,320,1186,320C1157.6,320,1129,320,1101,320C1072.9,320,1045,320,1016,320C988.2,320,960,320,932,320C903.5,320,875,320,847,320C818.8,320,791,320,762,320C734.1,320,706,320,678,320C649.4,320,621,320,593,320C564.7,320,536,320,508,320C480,320,452,320,424,320C395.3,320,367,320,339,320C310.6,320,282,320,254,320C225.9,320,198,320,169,320C141.2,320,113,320,85,320C56.5,320,28,320,14,320L0,320Z"></path></svg> -->

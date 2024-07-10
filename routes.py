@@ -33,6 +33,7 @@ def homePage():
         - A redirection to the appropriate search method if the request method is 'POST'.
     """
     form = Search()
+    doctors = Doctor.query.limit(7)
     if request.method == 'POST':
         specialization_input = form.specialization.data
         location_input = form.location.data
@@ -58,7 +59,7 @@ def homePage():
                 return redirect(url_for('search', specialization=specialization_input, location=location_input, name=name_input))
             else:
                 return redirect(url_for('search', specialization=specialization_input, location=location_input))
-    return render_template("home.html", search_form=form)
+    return render_template("home.html", search_form=form, doctors=doctors)
 
 @app.route('/search', defaults={'name': None})
 @app.route('/search/<name>')
