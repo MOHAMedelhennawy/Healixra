@@ -26,6 +26,14 @@
             </div>
             {% endfor %}
         </div>
+        <div class="pagination">
+            {% if doctors.has_prev %}
+                <a href="{{ url_for('doctors', page=doctors.prev_num) }}">&laquo; Previous</a>
+            {% endif %}
+            {% if doctors.has_next %}
+                <a href="{{ url_for('doctors', page=doctors.next_num) }}">Next &raquo;</a>
+            {% endif %}
+        </div>
     </div>
 </div>
 {% endblock content %}

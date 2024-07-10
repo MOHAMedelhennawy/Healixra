@@ -33,7 +33,7 @@ def homePage():
         - A redirection to the appropriate search method if the request method is 'POST'.
     """
     form = Search()
-    doctors = Doctor.query.limit(7)
+    doctors = Doctor.query.limit(10)
     if request.method == 'POST':
         specialization_input = form.specialization.data
         location_input = form.location.data
@@ -240,22 +240,11 @@ def book_appointment(doctor_id):
     else:
         return "Doctor not found", 404
 
-@app.route("/about")
-def aboutPage():
-    return render_template("about.html")
 
 @app.route("/doctors")
 def doctorsPage():
-    return render_template("doctors.html")
 
-@app.route("/pages")
-def pagesPage():
-    return render_template("pages.html")
-
-@app.route("/content")
-def contentPage():
-    return render_template("content.html")
-
+    return redirect(url_for('search_all'))
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
@@ -324,7 +313,7 @@ def settings():
         form.first_name.data = current_user.first_name
         form.last_name.data = current_user.last_name
         form.email.data = current_user.email
-    image_filename = current_user.images.decode() if isinstance(current_user.images, bytes) else current_user.images
+    image_filename = current_user.image.decode() if isinstance(current_user.image, bytes) else current_user.image
     image_file = url_for('static', filename=f'user_images/{image_filename}') if image_filename else None
     return render_template("settings.html", title='settings', form=form, image_file=image_file)
 

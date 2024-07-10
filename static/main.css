@@ -21,6 +21,7 @@ body {
     width: 100%;
     background-size: cover;
     background-repeat: no-repeat;
+    position: relative;
     /* background-color: #3463ef; */
     /* background-image: linear-gradient(to bottom left, white, rgba(36, 95, 234, 0.895) 20%, rgba(69, 102, 180, 0.816) 60%, white); */
 }
@@ -87,10 +88,6 @@ nav ul li{
     display: inline-block;
     padding: 0px 20px;
     transition: 0.4s;
-}
-
-nav ul li:hover{
-    scale: 1.1;
 }
 
 nav li a:before{
@@ -180,6 +177,8 @@ nav li a:hover:before{
 .flash{
     color: #fff;
     display: flex;
+    position: absolute;
+    right: 400px;
     text-align: center;
     visibility: visible;
     width: 50%;

@@ -39,4 +39,5 @@ class Search(FlaskForm):
         render_kw={'placeholder': 'Doctor Name '},
     )
     
-    submit = SubmitField('Search')
+    # submit = SubmitField('Search')
+    submit = SubmitField('Search', render_kw={'class': 'search-button'})

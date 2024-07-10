@@ -22,8 +22,8 @@
 .content .text{
     width: 40%;
     text-align: start;
-
 }
+
 .content .text h2{
     color: #3463ef;
     /* color: white; */
@@ -42,6 +42,7 @@
 .content .img{
     margin-left: 55px;
     width: 63%;
+
 }
 
 .content .img img{
@@ -103,11 +104,19 @@
 
 .search-continer form .search-bar{
     /* border: 1px black solid; */
-    width: 180px;
-    /* border-radius: 35px; */
-    margin-left: 100px;
+    width: 221px;
+    line-height: 30px;
+    border-radius: 35px;
+    border: none;
+    padding-left: 10px;
+    /* margin-left: 100px; */
 }
 
+.search-name{
+    display: flex;
+    margin-right: 20px;
+
+}
 .search form .search-specialization, .search-location{
     display: flex;
     border-right: 1px rgb(255, 255, 255) solid;
@@ -116,7 +125,7 @@
     margin: 20px;
 }
 
-.search form .search-specialization i, .search-location i{
+.search form .search-specialization i, .search-location i, .search-name i{
     margin: auto;
     font-size: 20px;
     color: white;
@@ -134,22 +143,30 @@
 }
 
 .search form .button{
-    border-radius: 10px;
-    color: #3463ef;
-    font-size: 17px;
-    font-weight: 500;
-    background-color: #fff;
-    transition: all 0.5s ease;
-    cursor: pointer;
-    width: 24%;
-    line-height: 200%;
-    bottom: -4px;
-}
-.search form .button:hover{
-    background-color: #265df2;
-    border-radius: 30px;
+    width: 100px;
+    line-height: 30px;
+    border: none;
 }
 
+.search-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 16px;
+    color: #333;
+    transition: all 1s ease;
+
+}
+
+.search-button i {
+    font-size: 20px;
+    color: white;
+}
+
+.search-button:hover{
+    scale: 1.1;
+}
 .top-specialists{
     background-color: #4070f4;
     width: 100%;
@@ -167,7 +184,6 @@
     justify-content: center;
     margin: auto;
     gap: 20px;
-
 }
 
 .top-specialists .specialists-container > *{

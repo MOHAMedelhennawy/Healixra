@@ -13,9 +13,12 @@
                     {{search_form.location(class_='select')}}
                 </div>
                 <div class="search-name">
+                    <i class="fa-solid fa-user-doctor"></i>
                     {{search_form.name(class_='search-bar')}}
                 </div>
-                {{search_form.submit(class_="button")}}
+                <button type="submit" class="search-button">
+                    <i class="fa fa-search"></i>
+                </button>
             </form>
         </div>
     </div>
@@ -34,7 +37,6 @@
         </div>
 
     </div>
-    <h1>Most pupolar</h1>
         <div class="top-rating-doctors owl-carousel">
             {% for doctor in doctors %}
                 <div class="doctor">

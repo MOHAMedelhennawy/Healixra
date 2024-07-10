@@ -31,7 +31,6 @@
 }
 
 .result-content .doctors .result:hover {
-    transform: scale(1.03);
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
 }
 
@@ -82,4 +81,23 @@
 
 .result-content .doctors .result:hover div i {
     color: #4070f4;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.pagination a {
+    color: #4070f4;
+    text-decoration: none;
+    font-size: 17px;
+    font-weight: 500;
+    margin: 0 10px;
+    transition: all 0.5s ease;
+}
+
+.pagination a:hover {
+    color: #265df2;
 }
