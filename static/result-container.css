@@ -51,7 +51,7 @@
     padding-right: 6px;
 }
 
-.result-content .doctors .result a {
+.result-content .doctors .result a, .top-rating-doctors .doctor a {
     border-radius: 10px;
     color: #4070f4;
     text-decoration: none;
@@ -67,9 +67,10 @@
     justify-content: center;
     align-items: center;
     margin: 10px auto;
+    transition: all 1s ease;
 }
 
-.result-content .doctors .result a:hover {
+.result-content .doctors .result a:hover, .top-rating-doctors .doctor a:hover {
     color: white;
     background-color: #265df2;
     border-radius: 30px;

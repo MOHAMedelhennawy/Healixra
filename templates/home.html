@@ -30,7 +30,7 @@
                 Sint illo omnis odit repellendus sequi minus nemo eveniet
                 neque adipisci delectus!
             </p>
-            <a href="{{ url_for('register')}}"><button type="button">Explore</button></a>
+            <a href="{{ url_for('doctorsPage')}}"><button type="button">Explore</button></a>
         </div>
         <div class="img">
             <img src="../static/images/1.png" alt="">
@@ -50,6 +50,7 @@
                         <div class="bio">
                             <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. In ipsum iste magnam, et accusantium rerum ad, dolor nemo voluptatem voluptate, hic obcaecati consequatur cupiditate eligendi? Magnam enim maxime pariatur quaerat?</span>
                         </div>
+                        <a href="{{url_for('doctor_profile', doctor_id=doctor.id)}}">Book now</a>
                     </div>
                 </div>
             {% endfor %}

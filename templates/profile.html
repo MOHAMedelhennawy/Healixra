@@ -16,10 +16,42 @@
         </section>
 
         <section class="profile-content user-appointments">
+            {% if user_appointments %}
             <h1 class="title">Your appointmetns</h1>
             <div class="appointmetns">
-                <h1>...</h1>
-            </div>
+                    {% for appointmetn in user_appointments %}
+                    <a href="{{url_for('doctor_profile', doctor_id=appointmetn.doctor.id)}}">
+                        <div class="appointment">
+                            <!-- {{appointmetn.doctor.image}} -->
+                            <img src="/static/doctors_images/{{appointmetn.doctor.image}}" alt="">
+                            <div class="text">
+                                <div class="doctor-name info">
+                                    <i class="fa-solid fa-user-doctor"></i>
+                                    <h2>{{appointmetn.doctor.first_name}} {{appointmetn.doctor.last_name}}</h2>
+                                </div>
+                                <div class="date info">
+                                    <i class="fa-regular fa-calendar-days"></i>
+                                    <p>{{appointmetn.appointment_date}}</p>
+                                </div>
+                                <div class="time info">
+                                    <i class="fa-regular fa-clock"></i>
+                                    <p>{{appointmetn.appointment_time}}</p>
+                                </div>
+                                <div class="timer info">
+                                    <p id="demo-{{ loop.index }}"></p>
+                                    <input type="hidden" id="appointment-datetime-{{ loop.index }}" value="{{ appointmetn.appointment_date }} {{ appointmetn.appointment_time }}">
+                                </div>
+                                <form action="{{ url_for('delete_appointment', appointment_id=appointmetn.id) }}" method="POST">
+                                    <a class="delete" href="{{url_for('delete_appointment', appointment_id=appointmetn.id)}}">Delete</a>
+                                </form>
+                            </div>
+                        </div>
+                    </a>
+                    {% endfor %}
+                {% else %}
+                    <h1>No appointments yet..</h1>
+                {% endif %}
+            </div>  
         </section>
     </div>
     <!--         

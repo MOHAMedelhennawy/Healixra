@@ -198,6 +198,7 @@ def doctor_profile(doctor_id):
 
 
 @app.route('/doctor/<doctor_id>/add_review', methods=['POST'])
+@login_required
 def add_review(doctor_id):
     form = Add_review()
     if form.validate_on_submit() and form.text.data:  # Ensure the form is validated before processing
@@ -240,10 +241,16 @@ def book_appointment(doctor_id):
     else:
         return "Doctor not found", 404
 
+@app.route('/profile/appointment/<appointment_id>/delete', methods=["GET", "DELETE"])
+@login_required
+def delete_appointment(appointment_id):
+    appointment = Appointment.query.filter_by(id=appointment_id).first()
+    db.session.delete(appointment)
+    db.session.commit()
+    return redirect(url_for('profile'))
 
 @app.route("/doctors")
 def doctorsPage():
-
     return redirect(url_for('search_all'))
 
 @app.route("/register", methods=['GET', 'POST'])
@@ -294,10 +301,16 @@ def logout():
 
 @app.route('/profile')
 @login_required
-def profile():    
+def profile():
+    user_appointments = Appointment.query.filter(
+        Appointment.patient_id == current_user.id,
+       (Appointment.appointment_date > datetime.now().date()) |
+       (Appointment.appointment_date == datetime.now().date()) &
+       (Appointment.appointment_time > datetime.now().time())).join(Doctor).all()
+
     image_filename = current_user.images.decode() if isinstance(current_user.image, bytes) else current_user.image
     image_file = url_for('static', filename=f'user_images/{image_filename}') if image_filename else None
-    return render_template("profile.html", title='Profile', image_file=image_file)
+    return render_template("profile.html", title='Profile', image_file=image_file, user_appointments=user_appointments)
 
 @app.route('/settings', methods=['GET', 'POST'])
 @login_required

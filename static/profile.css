@@ -47,3 +47,51 @@
 .account-info .image-username .text button:hover {
     background-color: #5079f3;
 }
+
+.appointmetns a{
+    text-decoration: none;
+    color: black;
+}
+.user-appointments{
+    padding: 20px;
+}
+.user-appointments .appointmetns .appointment{
+    width: 100%;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    display: flex;
+    /* align-items: center; */
+    gap: 3px;
+}
+.user-appointments .appointmetns .appointment img{
+    width: 285px;
+}
+.user-appointments .appointmetns .appointment .text .info{
+    display: flex;
+    justify-content: start;
+}
+.user-appointments .appointmetns .appointment .text .info i{
+    display: flex;
+    align-items: center;
+    padding: 0 11px 0 0;
+    text-align: center;
+}
+.user-appointments .appointmetns .appointment .text .timer p{
+    font-weight: 500;
+}
+.user-appointments .appointmetns .appointment .text form{
+    margin: 33px 0 0 9px;
+
+}
+.user-appointments .appointmetns .appointment .text form .delete{
+    padding: 10px;
+    color: white;
+    font-weight: 600;
+    border-radius: 20px;
+    background-color: red;
+}
+
+.user-appointments .appointmetns .appointment .text form .delete:hover{
+    background-color: rgb(251, 46, 46);
+
+}
