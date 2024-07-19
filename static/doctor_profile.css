@@ -63,7 +63,7 @@
     border-left: 3px #4070f4 solid;
     padding-left: 2px;
 }
-
+    
 .doctor-bio .text .bio p{
     padding-left: 8px;
 }
@@ -170,17 +170,19 @@
     height: 32px;
     border-radius: 50%;
 }
-
-.add-review{
+.add-review {
     margin-bottom: 100px;
     max-width: 100%;
 }
-
-.add-review .comment{
+.add-review .comment {
     width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
 }
-
-.add-review .submit_rating .submit .submit-btn{
+.add-review .submit_rating .submit .submit-btn {
     background-color: #4070f4;
     color: white;
     width: 100px;
@@ -189,14 +191,67 @@
     border-radius: 20px;
     transition: all 1s ease;
     cursor: pointer;
+    border: none;
+    font-size: 16px;
 }
-
-.submit_rating{
+.submit_rating {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
-
-.add-review .submit_rating .submit .submit-btn:hover{
+.add-review .submit_rating .submit .submit-btn:hover {
     background-color: #002fba;
-
+}
+.rate-area {
+    float: left;
+    border-style: none;
+}
+.rate-area:not(:checked) > input {
+    position: absolute;
+    top: -9999px;
+    clip: rect(0, 0, 0, 0);
+}
+.rate-area:not(:checked) > label {
+    float: right;
+    width: 0.8em;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 180%;
+    color: lightgrey;
+}
+.rate-area:not(:checked) > label:before {
+    content: "★";
+}
+.rate-area > input:checked ~ label {
+    color: #4070f4;
+}
+.rate-area:not(:checked) > label:hover,
+.rate-area:not(:checked) > label:hover ~ label {
+    color: #4070f4;
+}
+.rate-area > input:checked + label:hover,
+.rate-area > input:checked + label:hover ~ label,
+.rate-area > input:checked ~ label:hover,
+.rate-area > input:checked ~ label:hover ~ label,
+.rate-area > label:hover ~ input:checked ~ label {
+    color: #4070f4;
+}
+.form-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+.invalid-feedback {
+    color: red;
+    display: none;
+}
+.was-validated .comment:invalid + .invalid-feedback {
+    display: block;
+}
+.was-validated .rating input[type="radio"]:invalid + .invalid-feedback {
+    display: block;
+}
+.form-control{
+    width: 100%;
 }

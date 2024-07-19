@@ -184,10 +184,18 @@ from datetime import datetime, timedelta
 
 @app.route('/doctor/<doctor_id>', methods=['GET'])
 def doctor_profile(doctor_id):
+    """Display HTML file of doctor
+
+    Keyword arguments:
+        argument -- doctor_id
+    Return:
+        Returned HTML tmeplete displaying doctor page
+    """
+    
     form = Add_review()
     doctor = Doctor.query.filter_by(id=doctor_id).first()
     reviews = Review.query.filter_by(doctor_id=doctor.id).join(Patient).order_by(Review.updated_at.desc()).all()
-        
+
     if doctor:
         # Calculate the next 7 days
         today = datetime.today().date()
@@ -200,17 +208,24 @@ def doctor_profile(doctor_id):
 @app.route('/doctor/<doctor_id>/add_review', methods=['POST'])
 @login_required
 def add_review(doctor_id):
+    """Add review and store it in database
+
+    Keyword arguments:
+        argument -- doctor_id
+    Return:
+        Rendered HTML template displaying all reviews.
+    """
+
     form = Add_review()
-    if form.validate_on_submit() and form.text.data:  # Ensure the form is validated before processing
+    if form.validate_on_submit() and form.text.data:
         review = Review(
             patient_id=current_user.id,
             doctor_id=doctor_id,
             review_text=form.text.data,
-            rating=3  # You can set the rating dynamically if needed
+            rating=int(form.rating.data)
         )
         db.session.add(review)
         db.session.commit()
-        return redirect(url_for('doctor_profile', doctor_id=doctor_id))
     return redirect(url_for('doctor_profile', doctor_id=doctor_id))
 
 @app.route('/doctor/<doctor_id>/appointments/<date>', methods=['GET'])
@@ -244,6 +259,14 @@ def book_appointment(doctor_id):
 @app.route('/profile/appointment/<appointment_id>/delete', methods=["GET", "DELETE"])
 @login_required
 def delete_appointment(appointment_id):
+    """Delete appointment passed on id
+    
+    Keyword arguments:
+        argument -- appointment_id
+    Return:
+        Returned HTML templete of all existing appointments in user profile
+    """
+    
     appointment = Appointment.query.filter_by(id=appointment_id).first()
     db.session.delete(appointment)
     db.session.commit()
@@ -251,10 +274,16 @@ def delete_appointment(appointment_id):
 
 @app.route("/doctors")
 def doctorsPage():
+    """Returned all doctors
+    """
+
     return redirect(url_for('search_all'))
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
+    """Registeration form
+    """
+
     if current_user.is_authenticated:
         return redirect(url_for('homePage'))
     colours = ['Male', 'Female']
@@ -277,6 +306,9 @@ def register():
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
+    """Login form
+    """
+
     if current_user.is_authenticated:
         return redirect(url_for('homePage'))
 
@@ -302,6 +334,12 @@ def logout():
 @app.route('/profile')
 @login_required
 def profile():
+    """List all appointments
+
+    Return:
+        Returned HTML templete of all existing and unexpired appointments in user profile
+    """
+    
     user_appointments = Appointment.query.filter(
         Appointment.patient_id == current_user.id,
        (Appointment.appointment_date > datetime.now().date()) |
@@ -314,7 +352,10 @@ def profile():
 
 @app.route('/settings', methods=['GET', 'POST'])
 @login_required
-def settings(): 
+def settings():
+    """Update user information
+    """
+    
     form = updateProfile()
     if form.validate_on_submit():
         current_user.first_name = form.first_name.data

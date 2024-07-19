@@ -5,7 +5,8 @@ from models.base_model import BaseModel
 from sqlalchemy import Column, String, Integer, Text, ForeignKey
 from models.base_model import db
 from flask_wtf import FlaskForm
-from wtforms import TextAreaField, SubmitField
+from wtforms import TextAreaField, SubmitField, RadioField
+from wtforms.validators import InputRequired
 
 class Review(BaseModel, db.Model):
     __tablename__ = 'reviews'
@@ -19,5 +20,11 @@ class Add_review(FlaskForm):
     text = TextAreaField(
         'review'
     )
-
+    rating = RadioField('Rating', choices=[
+        ('5', '5 stars'),
+        ('4', '4 stars'),
+        ('3', '3 stars'),
+        ('2', '2 stars'),
+        ('1', '1 star')
+    ], validators=[InputRequired(message="Rating is required.")])
     submit = SubmitField('submit')

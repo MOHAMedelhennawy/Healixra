@@ -66,21 +66,31 @@
                 </div>
                 {% endfor %}
                 <div class="add-review">
-                    <form action="{{ url_for('add_review', doctor_id=doctor.id) }}" method="POST">
+                    <h1 class="text-center">Add a Review</h1>
+                    <form action="{{ url_for('add_review', doctor_id=doctor.id) }}" method="POST" class="needs-validation" novalidate>
                         {{ form.hidden_tag() }}
-                        {{ form.text(class_='comment') }}
+                        <div class="form-group">
+                            <label for="comment" class="form-label">{{ form.text.label }}</label>
+                            {{ form.text(class_='comment', placeholder='Write your review here...') }}
+                            <div class="invalid-feedback">
+                                Please provide a review.
+                            </div>
+                        </div>
                         <div class="submit_rating">
+                            <div class="rating">
+                                <div class="rate-area">
+                                    <input type="radio" id="5-star" name="rating" value="5" required/><label for="5-star" title="Amazing">★</label>
+                                    <input type="radio" id="4-star" name="rating" value="4" required/><label for="4-star" title="Good">★</label>
+                                    <input type="radio" id="3-star" name="rating" value="3" required/><label for="3-star" title="Average">★</label>
+                                    <input type="radio" id="2-star" name="rating" value="2" required/><label for="2-star" title="Not Good">★</label>
+                                    <input type="radio" id="1-star" name="rating" value="1" required/><label for="1-star" title="Bad">★</label>
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please provide a rating.
+                                </div>
+                            </div>
                             <div class="submit">
                                 {{ form.submit(class_='submit-btn') }}
-                            </div>
-                            <div class="rating">
-                                <ul class="rate-area">
-                                    <input type="radio" id="5-star" name="rating" value="5" /><label for="5-star" title="Amazing">5 stars</label>
-                                    <input type="radio" id="4-star" name="rating" value="4" /><label for="4-star" title="Good">4 stars</label>
-                                    <input type="radio" id="3-star" name="rating" value="3" /><label for="3-star" title="Average">3 stars</label>
-                                    <input type="radio" id="2-star" name="rating" value="2" /><label for="2-star" title="Not Good">2 stars</label>
-                                    <input type="radio" id="1-star" name="rating" value="1" /><label for="1-star" title="Bad">1 star</label>
-                                </ul>
                             </div>
                         </div>
                     </form>
