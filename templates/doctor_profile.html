@@ -67,7 +67,7 @@
                 {% endfor %}
                 <div class="add-review">
                     <h1 class="text-center">Add a Review</h1>
-                    <form action="{{ url_for('add_review', doctor_id=doctor.id) }}" method="POST" class="needs-validation" novalidate>
+                    <form id="reviewForm" action="{{ url_for('add_review', doctor_id=doctor.id) }}" method="POST" class="needs-validation" novalidate>
                         {{ form.hidden_tag() }}
                         <div class="form-group">
                             <label for="comment" class="form-label">{{ form.text.label }}</label>

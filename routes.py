@@ -191,7 +191,6 @@ def doctor_profile(doctor_id):
     Return:
         Returned HTML tmeplete displaying doctor page
     """
-    
     form = Add_review()
     doctor = Doctor.query.filter_by(id=doctor_id).first()
     reviews = Review.query.filter_by(doctor_id=doctor.id).join(Patient).order_by(Review.updated_at.desc()).all()
@@ -199,34 +198,15 @@ def doctor_profile(doctor_id):
     if doctor:
         # Calculate the next 7 days
         today = datetime.today().date()
-        next_7_days = [(today + timedelta(days=i)).strftime('%Y-%m-%d') for i in range(7)]
+        # next_7_days = [(today + timedelta(days=i)).strftime('%Y-%m-%d') for i in range(7)]
+        next_7_days = []
+        for i in range(7):
+            day = (today + timedelta(days=i))
+            if day.strftime("%A") in doctor.schedule:
+                next_7_days.append(day.strftime('%Y-%m-%d'))
         return render_template('doctor_profile.html', doctor=doctor, next_7_days=next_7_days, reviews=reviews, form=form)
     else:
         return "Doctor not found", 404
-
-
-@app.route('/doctor/<doctor_id>/add_review', methods=['POST'])
-@login_required
-def add_review(doctor_id):
-    """Add review and store it in database
-
-    Keyword arguments:
-        argument -- doctor_id
-    Return:
-        Rendered HTML template displaying all reviews.
-    """
-
-    form = Add_review()
-    if form.validate_on_submit() and form.text.data:
-        review = Review(
-            patient_id=current_user.id,
-            doctor_id=doctor_id,
-            review_text=form.text.data,
-            rating=int(form.rating.data)
-        )
-        db.session.add(review)
-        db.session.commit()
-    return redirect(url_for('doctor_profile', doctor_id=doctor_id))
 
 @app.route('/doctor/<doctor_id>/appointments/<date>', methods=['GET'])
 def get_appointments(doctor_id, date):
@@ -245,7 +225,6 @@ def book_appointment(doctor_id):
         selected_date = request.form.get('selected_date')
         appointment_time = request.form.get('appointment_time')
         if selected_date and appointment_time:
-            # Create and store the appointment (assuming you have an Appointment model)
             appointment_datetime = datetime.strptime(f"{selected_date} {appointment_time}", '%Y-%m-%d %H:%M')
             new_appointment = Appointment(patient_id=current_user.id ,doctor_id=doctor.id, appointment_date=appointment_datetime.date(), appointment_time=appointment_datetime.time())
             db.session.add(new_appointment)
@@ -272,18 +251,51 @@ def delete_appointment(appointment_id):
     db.session.commit()
     return redirect(url_for('profile'))
 
+@app.route('/doctor/<doctor_id>/add_review', methods=['POST'])
+@login_required
+def add_review(doctor_id):
+    form = Add_review()
+    if form.validate_on_submit() and form.text.data:
+        try:
+            rating = int(form.rating.data)
+            if rating < 1 or rating > 5:
+                return jsonify({'success': False, 'error': 'Rating must be between 1 and 5.'}), 400
+
+            review = Review(
+                patient_id=current_user.id,
+                doctor_id=doctor_id,
+                review_text=form.text.data,
+                rating=rating
+            )
+            db.session.add(review)
+            db.session.commit()
+            
+            # Assuming you have a to_dict method to serialize the review object
+            review_data = {
+                'Patient': {
+                    'first_name': current_user.first_name,
+                    'last_name': current_user.last_name
+                },
+                'rating': review.rating,
+                'review_text': review.review_text
+            }
+
+            return jsonify({'success': True, 'review': review_data}), 200
+        except Exception as e:
+            db.session.rollback()
+            return jsonify({'success': False, 'error': str(e)}), 500
+    return jsonify({'success': False, 'error': 'Invalid form data'}), 400
+
 @app.route("/doctors")
 def doctorsPage():
     """Returned all doctors
     """
-
     return redirect(url_for('search_all'))
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
     """Registeration form
     """
-
     if current_user.is_authenticated:
         return redirect(url_for('homePage'))
     colours = ['Male', 'Female']
@@ -308,7 +320,6 @@ def register():
 def login():
     """Login form
     """
-
     if current_user.is_authenticated:
         return redirect(url_for('homePage'))
 
@@ -324,12 +335,6 @@ def login():
             else:
                 flash('Please check your email or password', 'danger')
     return render_template("login.html", title="Login", form=form)
-
-
-@app.route('/logout')
-def logout():
-    logout_user()
-    return redirect(url_for('homePage'))
 
 @app.route('/profile')
 @login_required
@@ -371,6 +376,10 @@ def settings():
     image_file = url_for('static', filename=f'user_images/{image_filename}') if image_filename else None
     return render_template("settings.html", title='settings', form=form, image_file=image_file)
 
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('homePage'))
 
 if __name__ == "__main__":
     app.run(debug=True)
