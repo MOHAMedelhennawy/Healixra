@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField
 from wtforms.validators import Email, DataRequired, Length, Regexp, EqualTo, ValidationError
 from models.patient import Patient
 from models.base_model import db
@@ -35,10 +35,6 @@ class Registration(FlaskForm):
         render_kw={"placeholder": "Confirm Password"}
     )
 
-    # gender = SelectField(
-    #     'Gender',
-    #     # validators=[DataRequired()]
-    #     )
     remember = BooleanField('Remember Me')
     submit = SubmitField('Sign Up')
 

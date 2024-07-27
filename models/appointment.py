@@ -2,7 +2,6 @@
 """Specialization Class defenition"""
 
 from models.base_model import BaseModel 
-from sqlalchemy import Column, String, Date, Boolean, ForeignKey, Time
 from models.base_model import db
 
 class Appointment(BaseModel, db.Model):

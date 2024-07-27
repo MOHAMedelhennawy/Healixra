@@ -1,6 +1,6 @@
 import models
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, TimeField, SelectField, SearchField, DateField
+from wtforms import SubmitField, SelectField, SearchField
 from wtforms.validators import DataRequired
 from models.specialization import Specialization
 from models.location import Location

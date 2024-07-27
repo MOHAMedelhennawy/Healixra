@@ -2,43 +2,39 @@
 {% block content %}
 <div class="form-container">
     <div class="form login setting">
-        <img src="{{image_file}}" alt="">
-        <div class="upload-img">
-            {{ form.image(label='Choose file', class_='file-input') }}
-        </div>
-        <!-- <img src="/static/user_images/user.jpg" alt=""> -->
+        <img src="{{ image_file }}" alt="">
         <span class="title">Update your profile</span>
-        <form action="{{ url_for('settings') }}" method="POST"> 
+        <form action="{{ url_for('settings') }}" method="POST" enctype="multipart/form-data"> 
             {{ form.hidden_tag() }}
+            <div class="upload-img">
+                {{ form.image.label }}: {{ form.image(class_='file-input') }}
+            </div>
             <div class="name">
-                <!-- First Name input field -->
                 <div class="input_field">
                     {{ form.first_name(class_='input first_name') }}
                     <i class="uil uil-user icon"></i>
                 </div>
                 {% if form.first_name.errors %}
-                {% for error in form.first_name.errors %}
-                    <div class="error_msg">
-                        <span style="color: red;">{{error}}</span>
-                    </div>
-                {% endfor %}
+                    {% for error in form.first_name.errors %}
+                        <div class="error_msg">
+                            <span style="color: red;">{{ error }}</span>
+                        </div>
+                    {% endfor %}
                 {% endif %}
 
-                <!-- Last Name input field -->
                 <div class="input_field">
                     {{ form.last_name(class_='input') }}
                     <i class="uil uil-user icon"></i>
                 </div>
                 {% if form.last_name.errors %}
-                {% for error in form.last_name.errors %}
-                    <div class="error_msg">
-                        <span style="color: red;">{{ error }}</span>
-                    </div>
-                {% endfor %}
+                    {% for error in form.last_name.errors %}
+                        <div class="error_msg">
+                            <span style="color: red;">{{ error }}</span>
+                        </div>
+                    {% endfor %}
                 {% endif %}
             </div>
 
-            <!-- Email input field -->
             <div class="input_field readonly">
                 {{ form.email(class_='input email')}}
                 <i class="uil uil-envelope icon"></i>
@@ -48,7 +44,6 @@
                 .input_field .email:focus {
                     border-bottom-color: red;
                 }
-                
                 .input_field .email:focus ~ .icon {
                     color: red;
                 }
@@ -57,8 +52,7 @@
                     <span style="color: red;">{{ form.email.errors[0] }}</span>
                 </div>
             {% endif %}
-        
-            <!-- Sign in redirection -->
+
             <div class="input_field button">
                 {{ form.submit(class_='button') }}
         </form>

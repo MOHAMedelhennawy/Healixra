@@ -2,16 +2,13 @@
 """Patient Class defenition"""
 
 from models.base_model import BaseModel
-from sqlalchemy import Column, String, ForeignKey, Text, BLOB, Table
+from sqlalchemy import Column, ForeignKey, Table
 from sqlalchemy.orm import relationship
 from models.doctor import Doctor
 from models.base_model import db
 from flask_login import UserMixin
 from flask_login import LoginManager
 from __init__ import app, login_manager
-
-# login_manager = LoginManager(app)
-# login_manager.init_app(app)
 
 # this decorator for open session for the user
 @login_manager.user_loader

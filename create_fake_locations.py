@@ -4,7 +4,7 @@ from models.location import Location
 Create fake locations
 
 command:
-HBNB_MYSQL_USER=Name HBNB_MYSQL_PWD=Password HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=Healixra HBNB_TYPE_STORAGE=db python3 create_fake_locations.py  
+USER=Name PWD=Password HOST=localhost DB=Healixra TYPE_STORAGE=db python3 create_fake_locations.py  
 
 """
 
@@ -43,4 +43,4 @@ for location in egyptian_governorates:
     location.save()
 
 models.storage.save()
-print('Ok')
+print('Fake locations created successfully!')

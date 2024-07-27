@@ -12,7 +12,6 @@
 .account-info{
     width: 100%;
     position: relative;
-    /* top: -108px; */
     padding: 0 18px;
 
 }
@@ -60,7 +59,6 @@
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
     padding: 10px;
     display: flex;
-    /* align-items: center; */
     gap: 3px;
 }
 .user-appointments .appointmetns .appointment img{

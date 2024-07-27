@@ -4,7 +4,7 @@ from models.specialization import Specialization
 Create fake Specializations
 
 command:
-HBNB_MYSQL_USER=Name HBNB_MYSQL_PWD=Password HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=Healixra HBNB_TYPE_STORAGE=db python3 create_fake_specializations.py  
+USER=Name PWD=Password HOST=localhost DB=Healixra TYPE_STORAGE=db python3 create_fake_specializations.py  
 
 """
 
@@ -39,4 +39,4 @@ for medical_specialtie in medical_specialties:
     specialization.save()
 
 models.storage.save()
-print('Ok')
+print('Fake specializations created successfully!')

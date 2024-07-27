@@ -1,5 +1,3 @@
-/* Add these styles to main.css */
-
 .form-container {
     display: flex;
     justify-content: center;
@@ -57,8 +55,6 @@
 }
 
 .input_field input:focus {
-    /* font-size: ; */
-    /* color: #ccc; */
     font-size: 15px;
     border-bottom-color: #4070f4;
 }
@@ -77,13 +73,13 @@
 
 .input_field i.icon{
     left: 0;
-    font-size: 24px; /* Ensure the font size is appropriate */
+    font-size: 24px;
 }
 
 .input_field i.showHidePw{
     right: 0;
     cursor: pointer;
-    font-size: 24px; /* Ensure the font size is appropriate */
+    font-size: 24px;
     padding: 10px;
 }
 
@@ -190,17 +186,14 @@
 }
 
 .setting .button input{
-    /* align-self: flex-start; */
     width: 50%;
 }
 
 .setting .button input:hover{
-    /* align-self: flex-start; */
     width: 48%;
 }
 
 .setting .upload-img{
-    /* position: relative; */
     margin-top: 30px;
     border: none;
 }

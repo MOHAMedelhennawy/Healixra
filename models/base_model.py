@@ -8,9 +8,6 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import models
 from sqlalchemy.orm import declarative_base
-from sqlalchemy import Column, String, DateTime
-import os
-# from routes import db
 from __init__ import  app
 
 db = SQLAlchemy(app)

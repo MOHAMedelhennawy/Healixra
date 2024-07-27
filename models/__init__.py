@@ -6,7 +6,7 @@ import os
 
 # db = SQLAlchemy(app)
 
-if os.getenv('HBNB_TYPE_STORAGE') == 'db':
+if os.getenv('TYPE_STORAGE') == 'db':
     from models.engine.db_storage import DBStorage
     storage = DBStorage()
     storage.reload()

@@ -2,7 +2,7 @@
 """Specialization Class defenition"""
 
 from models.base_model import BaseModel 
-from sqlalchemy import Column, String, DateTime, Text
+from sqlalchemy import String
 from sqlalchemy.orm import relationship
 from models.base_model import db
 from __init__ import app

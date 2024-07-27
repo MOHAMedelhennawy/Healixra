@@ -1,6 +1,13 @@
+"""
+command:
+    - USER=Name PWD=Password HOST=localhost DB=Healixra TYPE_STORAGE=db python3 routes.py  
+
+"""
 import models
-from flask import Flask, render_template, flash, redirect, url_for, request, jsonify
+import os
+from flask import render_template, flash, redirect, url_for, request, jsonify, current_app
 from flask_login import login_user, current_user, logout_user, login_required
+from werkzeug.utils import secure_filename
 from models.registration import Registration
 from models.specialization import Specialization
 from models.appointment import Appointment
@@ -62,6 +69,7 @@ def homePage():
     return render_template("home.html", search_form=form, doctors=doctors)
 
 @app.route('/search', defaults={'name': None})
+@app.route('/doctors', defaults={'name': None})
 @app.route('/search/<name>')
 def search_all(name):
     """
@@ -72,7 +80,6 @@ def search_all(name):
     return render_template('search_results.html', doctors=all_doctors, lenght=lenght)
 
 
-# don't forget remove the space between words in the uri 'South Siani'
 @app.route('/search/location/<location>', defaults={'name': None})
 @app.route('/search/location/<location>/<name>')
 def search_by_location(location, name):
@@ -198,7 +205,6 @@ def doctor_profile(doctor_id):
     if doctor:
         # Calculate the next 7 days
         today = datetime.today().date()
-        # next_7_days = [(today + timedelta(days=i)).strftime('%Y-%m-%d') for i in range(7)]
         next_7_days = []
         for i in range(7):
             day = (today + timedelta(days=i))
@@ -270,7 +276,6 @@ def add_review(doctor_id):
             db.session.add(review)
             db.session.commit()
             
-            # Assuming you have a to_dict method to serialize the review object
             review_data = {
                 'Patient': {
                     'first_name': current_user.first_name,
@@ -280,7 +285,7 @@ def add_review(doctor_id):
                 'review_text': review.review_text
             }
 
-            return jsonify({'success': True, 'review': review_data}), 200
+            return redirect(url_for('doctor_profile', doctor_id=doctor_id))
         except Exception as e:
             db.session.rollback()
             return jsonify({'success': False, 'error': str(e)}), 500
@@ -358,13 +363,22 @@ def profile():
 @app.route('/settings', methods=['GET', 'POST'])
 @login_required
 def settings():
-    """Update user information
-    """
-    
+    """Update user information"""
     form = updateProfile()
     if form.validate_on_submit():
         current_user.first_name = form.first_name.data
         current_user.last_name = form.last_name.data
+
+        if form.image.data:
+            # Save the uploaded file
+            image_file = form.image.data
+            filename = secure_filename(image_file.filename)
+            image_path = os.path.join(current_app.config['UPLOAD_FOLDER'], filename)
+            image_file.save(image_path)
+
+            # Update the user's image in the database
+            current_user.image = filename
+        
         db.session.commit()
         flash("Your profile has been updated", "success")
         return redirect(url_for('profile'))
@@ -372,8 +386,10 @@ def settings():
         form.first_name.data = current_user.first_name
         form.last_name.data = current_user.last_name
         form.email.data = current_user.email
+
     image_filename = current_user.image.decode() if isinstance(current_user.image, bytes) else current_user.image
     image_file = url_for('static', filename=f'user_images/{image_filename}') if image_filename else None
+
     return render_template("settings.html", title='settings', form=form, image_file=image_file)
 
 @app.route('/logout')

@@ -13,7 +13,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0; /* Add margin reset to remove any default margin */
+    margin: 0;
 }
 
 .container {
@@ -22,21 +22,16 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     position: relative;
-    /* background-color: #3463ef; */
-    /* background-image: linear-gradient(to bottom left, white, rgba(36, 95, 234, 0.895) 20%, rgba(69, 102, 180, 0.816) 60%, white); */
 }
   
  nav{
     display: flex;
-    /* position: fixed; */
     justify-content: space-between;
     align-items: center;
     gap: 2px;
     width: 100%;
     margin: auto;
     padding: 9px 19px;
-    /* margin-top: 20px; */
-    /* border-radius: 32px; */
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
     background-color: white;
 
@@ -112,13 +107,11 @@ nav li a:hover:before{
     text-align: center;
 }
 
-/* Dropdown Container */
 .dropdown {
         position: relative;
         display: inline-block;
 }
 
-/* Dropdown Content (Hidden by Default) */
 .dropdown-contents {
     display: none;
     position: absolute;
@@ -133,12 +126,10 @@ nav li a:hover:before{
 
 }
 
-/* Links inside the Dropdown */
 .dropdown-contents a {
     color: black;
     padding: 12px 16px;
     text-decoration: none;
-    /* display: block; */
 }
 
 .dropdown .account-icon{
@@ -206,9 +197,7 @@ nav li a:hover:before{
 .popup{
     position: absolute;
     color: #fff;
-    /* background-color: #3463ef; */
     text-align: center;
-    /* display: flex; */
     margin: 71px auto -211px;
     width: 60%;
     position: relative;
@@ -216,10 +205,6 @@ nav li a:hover:before{
     justify-content: center;
     background-color: #3463ef;
     align-items: center;    
-    /* background-color: #3463ef; */
-    /* border: 2px solid #3463ef; */
-    /* box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); */
-    /* transition: all 0.4s ease-in-out; */
     animation-name: popup;
     animation-duration: 1.3s;
 }

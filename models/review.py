@@ -2,7 +2,6 @@
 """Specialization Class defenition"""
 
 from models.base_model import BaseModel 
-from sqlalchemy import Column, String, Integer, Text, ForeignKey
 from models.base_model import db
 from flask_wtf import FlaskForm
 from wtforms import TextAreaField, SubmitField, RadioField

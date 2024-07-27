@@ -2,7 +2,6 @@
 """Doctor Class defenition"""
 
 from models.base_model import BaseModel 
-from sqlalchemy import Column, String, DateTime, Text, ForeignKey, BLOB
 from sqlalchemy.orm import relationship
 from models.base_model import db
 from sqlalchemy.ext.mutable import MutableDict
@@ -38,7 +37,7 @@ class Doctor(BaseModel, db.Model):
         if day not in self.schedule:
             self.schedule[day] = []
         self.schedule[day].append({'start': start_time, 'end': end_time})
-        self.schedule = self.schedule  # Trigger change tracking
+        self.schedule = self.schedule
 
     def remove_availability(self, day, start_time, end_time):
         """Remove availability from the doctor's schedule"""
@@ -46,7 +45,7 @@ class Doctor(BaseModel, db.Model):
             self.schedule[day] = [slot for slot in self.schedule[day] if slot['start'] != start_time or slot['end'] != end_time]
             if not self.schedule[day]:
                 del self.schedule[day]
-            self.schedule = self.schedule  # Trigger change tracking
+            self.schedule = self.schedule
 
     def get_appointments(self, date):
         """
