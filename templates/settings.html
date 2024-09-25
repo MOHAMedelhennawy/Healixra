@@ -39,20 +39,7 @@
                 {{ form.email(class_='input email')}}
                 <i class="uil uil-envelope icon"></i>
             </div>
-            {% if form.email.errors %}
-            <style>
-                .input_field .email:focus {
-                    border-bottom-color: red;
-                }
-                .input_field .email:focus ~ .icon {
-                    color: red;
-                }
-            </style>
-                <div class="error_msg">
-                    <span style="color: red;">{{ form.email.errors[0] }}</span>
-                </div>
-            {% endif %}
-
+        
             <div class="input_field button">
                 {{ form.submit(class_='button') }}
         </form>
