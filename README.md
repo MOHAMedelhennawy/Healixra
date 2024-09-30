@@ -26,12 +26,18 @@ Before you begin, ensure you have met the following requirements:
     cd Healixra
     ```
 
-2. Install dependencies and set up the MySQL database:
+2. Create Virtual Environment
+```bash
+    python3 -m venv Healixra
+    source Healixra/bin/activate
+```
+
+3. Install dependencies and set up the MySQL database:
     ```bash
     ./setup_project.sh
     ```
 
-3. To run the application:
+4. To run the application:
     ```bash
     python3 routes.py
     ```
