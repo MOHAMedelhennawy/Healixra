@@ -28,8 +28,8 @@ Before you begin, ensure you have met the following requirements:
 
 2. Create Virtual Environment
     ```bash
-        python3 -m venv Healixra
-        source Healixra/bin/activate
+    python3 -m venv Healixra
+    source Healixra/bin/activate
     ```
 
 3. Install dependencies and set up the MySQL database:
