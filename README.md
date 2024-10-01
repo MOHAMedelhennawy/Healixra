@@ -1,6 +1,10 @@
 # Healixra
 
+
 **Healixra** is a web application designed to help users find doctors based on their specialization, location, and name. Users can register, log in, search for doctors, book appointments, and leave reviews. The application is built using Flask with MySQL as the database backend.
+
+[Demo](https://www.youtube.com/watch?v=qCyBklxQwKA)
+
 
 ## Features
 
